@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="661673e99474495abc6c1f1f6a2d816e" Name="Diagram1">
+        <EntityTypeShape EntityType="Agot2p6Model.Arrow" Width="1.5" PointX="10.5" PointY="42.625" />
+        <EntityTypeShape EntityType="Agot2p6Model.Battle" Width="1.5" PointX="12.75" PointY="53.375" />
+        <EntityTypeShape EntityType="Agot2p6Model.BattleUser" Width="1.5" PointX="10.5" PointY="28.5" />
+        <EntityTypeShape EntityType="Agot2p6Model.DoType" Width="1.5" PointX="11.25" PointY="9.5" />
+        <EntityTypeShape EntityType="Agot2p6Model.Game" Width="1.5" PointX="3.75" PointY="24.625" />
+        <EntityTypeShape EntityType="Agot2p6Model.GameException" Width="1.5" PointX="5.75" PointY="1.25" />
+        <EntityTypeShape EntityType="Agot2p6Model.GameInfo" Width="1.5" PointX="10.5" PointY="46" />
+        <EntityTypeShape EntityType="Agot2p6Model.GamePoint" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="Agot2p6Model.GamePointType" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="Agot2p6Model.GameUser" Width="1.5" PointX="6" PointY="30.625" />
+        <EntityTypeShape EntityType="Agot2p6Model.GameUserInfo" Width="1.5" PointX="10.5" PointY="21.25" />
+        <EntityTypeShape EntityType="Agot2p6Model.GameUserTerrain" Width="1.5" PointX="12.75" PointY="22" />
+        <EntityTypeShape EntityType="Agot2p6Model.Garrison" Width="1.5" PointX="15.75" PointY="45.875" />
+        <EntityTypeShape EntityType="Agot2p6Model.HomeCardType" Width="1.5" PointX="3" PointY="30.75" />
+        <EntityTypeShape EntityType="Agot2p6Model.HomeType" Width="1.5" PointX="0.75" PointY="31.125" />
+        <EntityTypeShape EntityType="Agot2p6Model.March" Width="1.5" PointX="10.5" PointY="18.25" />
+        <EntityTypeShape EntityType="Agot2p6Model.MarchUnit" Width="1.5" PointX="12.75" PointY="18.125" />
+        <EntityTypeShape EntityType="Agot2p6Model.Message" Width="1.5" PointX="10.5" PointY="40" />
+        <EntityTypeShape EntityType="Agot2p6Model.ObjectPoint" Width="1.5" PointX="15.75" PointY="4.375" />
+        <EntityTypeShape EntityType="Agot2p6Model.Order" Width="1.5" PointX="15.75" PointY="17.75" />
+        <EntityTypeShape EntityType="Agot2p6Model.OrderType" Width="1.5" PointX="13.5" PointY="10.375" />
+        <EntityTypeShape EntityType="Agot2p6Model.PowerCounter" Width="1.5" PointX="12.75" PointY="25.875" />
+        <EntityTypeShape EntityType="Agot2p6Model.Raid" Width="1.5" PointX="10.5" PointY="15.375" />
+        <EntityTypeShape EntityType="Agot2p6Model.RandomDesk" Width="1.5" PointX="7.75" PointY="1.25" />
+        <EntityTypeShape EntityType="Agot2p6Model.Raven" Width="1.5" PointX="10.5" PointY="37.375" />
+        <EntityTypeShape EntityType="Agot2p6Model.Step" Width="1.5" PointX="8.25" PointY="29.75" />
+        <EntityTypeShape EntityType="Agot2p6Model.StepType" Width="1.5" PointX="6" PointY="28.25" />
+        <EntityTypeShape EntityType="Agot2p6Model.Support" Width="1.5" PointX="10.5" PointY="32" />
+        <EntityTypeShape EntityType="Agot2p6Model.Symbolic" Width="1.5" PointX="13.5" PointY="2" />
+        <EntityTypeShape EntityType="Agot2p6Model.Terrain" Width="1.5" PointX="13.5" PointY="4.75" />
+        <EntityTypeShape EntityType="Agot2p6Model.TerrainTerrain" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Agot2p6Model.TerrainType" Width="1.5" PointX="11.25" PointY="6" />
+        <EntityTypeShape EntityType="Agot2p6Model.TokenPoint" Width="1.5" PointX="15.75" PointY="8.25" />
+        <EntityTypeShape EntityType="Agot2p6Model.TokenType" Width="1.5" PointX="11.25" PointY="11.875" />
+        <EntityTypeShape EntityType="Agot2p6Model.TrackPoint" Width="1.5" PointX="5.25" PointY="5.125" />
+        <EntityTypeShape EntityType="Agot2p6Model.TrackType" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="Agot2p6Model.Unit" Width="1.5" PointX="15.75" PointY="21.625" />
+        <EntityTypeShape EntityType="Agot2p6Model.UnitType" Width="1.5" PointX="13.5" PointY="14.875" />
+        <EntityTypeShape EntityType="Agot2p6Model.UsedHomeCard" Width="1.5" PointX="12.75" PointY="29.125" />
+        <EntityTypeShape EntityType="Agot2p6Model.VesterosAction" Width="1.5" PointX="10.5" PointY="34.625" />
+        <EntityTypeShape EntityType="Agot2p6Model.VesterosActionType" Width="1.5" PointX="10.5" PointY="49.75" />
+        <EntityTypeShape EntityType="Agot2p6Model.VesterosCardAction" Width="1.5" PointX="12.75" PointY="50.25" />
+        <EntityTypeShape EntityType="Agot2p6Model.VesterosCardType" Width="1.5" PointX="10.5" PointY="52" />
+        <EntityTypeShape EntityType="Agot2p6Model.VesterosDecks" Width="1.5" PointX="12.75" PointY="45.75" />
+        <EntityTypeShape EntityType="Agot2p6Model.Voting" Width="1.5" PointX="10.5" PointY="25.75" />
+        <AssociationConnector Association="Agot2p6Model.FK_Arrow_Step" />
+        <AssociationConnector Association="Agot2p6Model.FK_Battle_GameInfo" />
+        <AssociationConnector Association="Agot2p6Model.FK_BattleUser_Step" />
+        <AssociationConnector Association="Agot2p6Model.FK_OrderType_DoType" />
+        <AssociationConnector Association="Agot2p6Model.FK_User_Game" />
+        <AssociationConnector Association="Agot2p6Model.FK_GameInfo_Step" />
+        <AssociationConnector Association="Agot2p6Model.FK_Garrison_GameInfo" />
+        <AssociationConnector Association="Agot2p6Model.FK_VesterosDecks_GameInfo" />
+        <AssociationConnector Association="Agot2p6Model.FK_GamePoint_GamePointType" />
+        <AssociationConnector Association="Agot2p6Model.FK_TerrainPoint_Point" />
+        <AssociationConnector Association="Agot2p6Model.FK_TokenPoint_Point" />
+        <AssociationConnector Association="Agot2p6Model.FK_TrackPoint_Point" />
+        <AssociationConnector Association="Agot2p6Model.FK_GameUser_HomeType" />
+        <AssociationConnector Association="Agot2p6Model.FK_Step_GameUser" />
+        <AssociationConnector Association="Agot2p6Model.FK_GameUserInfo_Step" />
+        <AssociationConnector Association="Agot2p6Model.FK_GameUserTerrain_GameUserInfo" />
+        <AssociationConnector Association="Agot2p6Model.FK_Order_GameUserInfo" />
+        <AssociationConnector Association="Agot2p6Model.FK_PowerCounter_GameUserInfo" />
+        <AssociationConnector Association="Agot2p6Model.FK_Unit_GameUserInfo" />
+        <AssociationConnector Association="Agot2p6Model.FK_UsedHomeCard_GameUserInfo" />
+        <AssociationConnector Association="Agot2p6Model.FK_HomeTerrain_Terrain" />
+        <AssociationConnector Association="Agot2p6Model.FK_Garrison_Terrain" />
+        <AssociationConnector Association="Agot2p6Model.FK_Garrison_TokenType" />
+        <AssociationConnector Association="Agot2p6Model.FK_HomeCard_HomeCardType" />
+        <AssociationConnector Association="Agot2p6Model.FK_HomeCardType_HomeType" />
+        <AssociationConnector Association="Agot2p6Model.FK_March_Step" />
+        <AssociationConnector Association="Agot2p6Model.FK_MarchUnit_March" />
+        <AssociationConnector Association="Agot2p6Model.FK_Message_Step1" />
+        <AssociationConnector Association="Agot2p6Model.FK_ObjectPoint_Symbolic" />
+        <AssociationConnector Association="Agot2p6Model.FK_TerainPointPosition_Terrain" />
+        <AssociationConnector Association="Agot2p6Model.FK_Order_OrderType" />
+        <AssociationConnector Association="Agot2p6Model.FK_Order_Terrain" />
+        <AssociationConnector Association="Agot2p6Model.FK_OrderType_TokenType" />
+        <AssociationConnector Association="Agot2p6Model.FK_PowerCounter_Terrain" />
+        <AssociationConnector Association="Agot2p6Model.FK_PowerCounter_TokenType" />
+        <AssociationConnector Association="Agot2p6Model.FK_Raid_Step" />
+        <AssociationConnector Association="Agot2p6Model.FK_Raven_Step" />
+        <AssociationConnector Association="Agot2p6Model.FK_Step_StepType" />
+        <AssociationConnector Association="Agot2p6Model.FK_Support_Step" />
+        <AssociationConnector Association="Agot2p6Model.FK_VesterosAction_Step" />
+        <AssociationConnector Association="Agot2p6Model.FK_Voting_Step" />
+        <AssociationConnector Association="Agot2p6Model.FK_JoinTerrain_Terrain" />
+        <AssociationConnector Association="Agot2p6Model.FK_Terrain_TerrainType" />
+        <AssociationConnector Association="Agot2p6Model.FK_TerrainTerrain_Terrain" />
+        <AssociationConnector Association="Agot2p6Model.FK_TokenPosition_Terrain" />
+        <AssociationConnector Association="Agot2p6Model.FK_Unit_Terrain" />
+        <AssociationConnector Association="Agot2p6Model.FK_TokenPosition_TokenType" />
+        <AssociationConnector Association="Agot2p6Model.FK_UnitType_TokenType" />
+        <AssociationConnector Association="Agot2p6Model.FK_TrackPosition_TrackType" />
+        <AssociationConnector Association="Agot2p6Model.FK_Unit_UnitType" />
+        <AssociationConnector Association="Agot2p6Model.FK_VesterosCardAction_VesterosActionType" />
+        <AssociationConnector Association="Agot2p6Model.FK_VesterosDecks_VesterosActionType" />
+        <AssociationConnector Association="Agot2p6Model.FK_VesterosCardAction_VesterosCardType" />
+        <AssociationConnector Association="Agot2p6Model.FK_VesterosDecks_VesterosCardType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

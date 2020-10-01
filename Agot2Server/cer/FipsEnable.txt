@@ -1,0 +1,2 @@
+secpol.msc
+http://www.morgantechspace.com/2014/12/How-to-enable-FIPS-Compliant-algorithms.html

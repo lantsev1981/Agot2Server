@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище GamePortal" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApiUser">
+          <Key>
+            <PropertyRef Name="uid" />
+            <PropertyRef Name="isFacebook" />
+          </Key>
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="uid" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isFacebook" Type="bit" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="last_name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="email" Type="nvarchar(max)" />
+          <Property Name="LastConnection" Type="datetimeoffset" Precision="7" />
+          <Property Name="ClientId" Type="nvarchar(max)" />
+          <Property Name="resetPswCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="resetPswDate" Type="datetimeoffset" Precision="7" />
+          <Property Name="emailConfirm" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OnlineCounter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="count" Type="int" Nullable="false" />
+          <Property Name="dateTime" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Time" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="Power" Type="int" Nullable="false" />
+          <Property Name="Event" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="IsPublic" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SpecialUser">
+          <Key>
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="SpecialLogin" />
+          </Key>
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SpecialLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsBlock" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsIgnore" Type="bit" Nullable="false" />
+          <Property Name="Version" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserGame">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GameId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GameType" Type="int" Nullable="false" />
+          <Property Name="HomeType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartTime" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="datetimeoffset" Precision="7" />
+          <Property Name="HonorPosition" Type="int" Nullable="false" />
+          <Property Name="IsIgnoreHonor" Type="bit" Nullable="false" />
+          <Property Name="MindPosition" Type="int" Nullable="false" />
+          <Property Name="IsIgnoreMind" Type="bit" Nullable="false" />
+          <Property Name="IsIgnoreDurationHours" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLike">
+          <Key>
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="LikeLogin" />
+          </Key>
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LikeLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsLike" Type="bit" Nullable="false" />
+          <Property Name="Date" Type="datetimeoffset" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ApiUser_User">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApiUser" Type="Self.ApiUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="ApiUser">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_GPUser">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpecialUser_GPUser">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SpecialUser" Type="Self.SpecialUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="SpecialUser">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Title_GPUser">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Title" Type="Self.Title" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="Title">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGame_GPUser">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserGame" Type="Self.UserGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="UserGame">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLike_GPUser">
+          <End Role="User" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserLike" Type="Self.UserLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="UserLike">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище GamePortalContainer">
+          <EntitySet Name="ApiUser" EntityType="Self.ApiUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OnlineCounter" EntityType="Self.OnlineCounter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SpecialUser" EntityType="Self.SpecialUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGame" EntityType="Self.UserGame" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLike" EntityType="Self.UserLike" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ApiUser_User" Association="Self.FK_ApiUser_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="ApiUser" EntitySet="ApiUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_GPUser" Association="Self.FK_Payment_GPUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpecialUser_GPUser" Association="Self.FK_SpecialUser_GPUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="SpecialUser" EntitySet="SpecialUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Title_GPUser" Association="Self.FK_Title_GPUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Title" EntitySet="Title" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGame_GPUser" Association="Self.FK_UserGame_GPUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserGame" EntitySet="UserGame" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLike_GPUser" Association="Self.FK_UserLike_GPUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserLike" EntitySet="UserLike" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GamePortal" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GamePortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApiUsers" EntityType="GamePortal.ApiUser" />
+          <EntitySet Name="Payments" EntityType="GamePortal.Payment" />
+          <EntitySet Name="SpecialUsers" EntityType="GamePortal.SpecialUser" />
+          <EntitySet Name="Titles" EntityType="GamePortal.Title" />
+          <EntitySet Name="Users" EntityType="GamePortal.User" />
+          <EntitySet Name="UserGames" EntityType="GamePortal.UserGame" />
+          <EntitySet Name="UserLikes" EntityType="GamePortal.UserLike" />
+          <AssociationSet Name="FK_ApiUser_User" Association="GamePortal.FK_ApiUser_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ApiUser" EntitySet="ApiUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_GPUser" Association="GamePortal.FK_Payment_GPUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SpecialUser_GPUser" Association="GamePortal.FK_SpecialUser_GPUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="SpecialUser" EntitySet="SpecialUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Title_GPUser" Association="GamePortal.FK_Title_GPUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Title" EntitySet="Titles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGame_GPUser" Association="GamePortal.FK_UserGame_GPUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserGame" EntitySet="UserGames" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLike_GPUser" Association="GamePortal.FK_UserLike_GPUser">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserLike" EntitySet="UserLikes" />
+          </AssociationSet>
+          <EntitySet Name="OnlineCounters" EntityType="GamePortal.OnlineCounter" />
+        </EntityContainer>
+        <EntityType Name="ApiUser">
+          <Key>
+            <PropertyRef Name="uid" />
+            <PropertyRef Name="isFacebook" />
+          </Key>
+          <Property Name="uid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isFacebook" Type="Boolean" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="first_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="photo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastConnection" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ClientId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="GamePortal.FK_ApiUser_User" FromRole="ApiUser" ToRole="User" />
+          <Property Name="resetPswCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="resetPswDate" Type="DateTimeOffset" Precision="7" />
+          <Property Name="emailConfirm" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Time" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="Power" Type="Int32" Nullable="false" />
+          <Property Name="Event" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsPublic" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="GamePortal.FK_Payment_GPUser" FromRole="Payment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SpecialUser">
+          <Key>
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="SpecialLogin" />
+          </Key>
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SpecialLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsBlock" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="GamePortal.FK_SpecialUser_GPUser" FromRole="SpecialUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="GamePortal.FK_Title_GPUser" FromRole="Title" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Login" />
+          </Key>
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsIgnore" Type="Boolean" Nullable="false" />
+          <Property Name="Version" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="ApiUsers" Relationship="GamePortal.FK_ApiUser_User" FromRole="User" ToRole="ApiUser" />
+          <NavigationProperty Name="Payments" Relationship="GamePortal.FK_Payment_GPUser" FromRole="User" ToRole="Payment" />
+          <NavigationProperty Name="SpecialUsers" Relationship="GamePortal.FK_SpecialUser_GPUser" FromRole="User" ToRole="SpecialUser" />
+          <NavigationProperty Name="Titles" Relationship="GamePortal.FK_Title_GPUser" FromRole="User" ToRole="Title" />
+          <NavigationProperty Name="UserGames" Relationship="GamePortal.FK_UserGame_GPUser" FromRole="User" ToRole="UserGame" />
+          <NavigationProperty Name="UserLikes" Relationship="GamePortal.FK_UserLike_GPUser" FromRole="User" ToRole="UserLike" />
+        </EntityType>
+        <EntityType Name="UserGame">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GameId" Type="Guid" Nullable="false" />
+          <Property Name="GameType" Type="Int32" Nullable="false" />
+          <Property Name="HomeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="DateTimeOffset" Precision="7" />
+          <Property Name="HonorPosition" Type="Int32" Nullable="false" />
+          <Property Name="IsIgnoreHonor" Type="Boolean" Nullable="false" />
+          <Property Name="MindPosition" Type="Int32" Nullable="false" />
+          <Property Name="IsIgnoreMind" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="GamePortal.FK_UserGame_GPUser" FromRole="UserGame" ToRole="User" />
+          <Property Name="IsIgnoreDurationHours" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLike">
+          <Key>
+            <PropertyRef Name="Login" />
+            <PropertyRef Name="LikeLogin" />
+          </Key>
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LikeLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsLike" Type="Boolean" Nullable="false" />
+          <Property Name="Date" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <NavigationProperty Name="User" Relationship="GamePortal.FK_UserLike_GPUser" FromRole="UserLike" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_ApiUser_User">
+          <End Type="GamePortal.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GamePortal.ApiUser" Role="ApiUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="ApiUser">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_GPUser">
+          <End Type="GamePortal.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GamePortal.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SpecialUser_GPUser">
+          <End Type="GamePortal.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GamePortal.SpecialUser" Role="SpecialUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="SpecialUser">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Title_GPUser">
+          <End Type="GamePortal.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GamePortal.Title" Role="Title" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="Title">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGame_GPUser">
+          <End Type="GamePortal.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GamePortal.UserGame" Role="UserGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="UserGame">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLike_GPUser">
+          <End Type="GamePortal.User" Role="User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GamePortal.UserLike" Role="UserLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Login" />
+            </Principal>
+            <Dependent Role="UserLike">
+              <PropertyRef Name="Login" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OnlineCounter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="count" Type="Int32" Nullable="false" />
+          <Property Name="dateTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище GamePortalContainer" CdmEntityContainer="GamePortalEntities">
+          <EntitySetMapping Name="ApiUsers">
+            <EntityTypeMapping TypeName="GamePortal.ApiUser">
+              <MappingFragment StoreEntitySet="ApiUser">
+                <ScalarProperty Name="emailConfirm" ColumnName="emailConfirm" />
+                <ScalarProperty Name="resetPswDate" ColumnName="resetPswDate" />
+                <ScalarProperty Name="resetPswCode" ColumnName="resetPswCode" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="LastConnection" ColumnName="LastConnection" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="isFacebook" ColumnName="isFacebook" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payments">
+            <EntityTypeMapping TypeName="GamePortal.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Event" ColumnName="Event" />
+                <ScalarProperty Name="Power" ColumnName="Power" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpecialUsers">
+            <EntityTypeMapping TypeName="GamePortal.SpecialUser">
+              <MappingFragment StoreEntitySet="SpecialUser">
+                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+                <ScalarProperty Name="SpecialLogin" ColumnName="SpecialLogin" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titles">
+            <EntityTypeMapping TypeName="GamePortal.Title">
+              <MappingFragment StoreEntitySet="Title">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="GamePortal.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="IsIgnore" ColumnName="IsIgnore" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGames">
+            <EntityTypeMapping TypeName="GamePortal.UserGame">
+              <MappingFragment StoreEntitySet="UserGame">
+                <ScalarProperty Name="IsIgnoreDurationHours" ColumnName="IsIgnoreDurationHours" />
+                <ScalarProperty Name="IsIgnoreMind" ColumnName="IsIgnoreMind" />
+                <ScalarProperty Name="MindPosition" ColumnName="MindPosition" />
+                <ScalarProperty Name="IsIgnoreHonor" ColumnName="IsIgnoreHonor" />
+                <ScalarProperty Name="HonorPosition" ColumnName="HonorPosition" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="HomeType" ColumnName="HomeType" />
+                <ScalarProperty Name="GameType" ColumnName="GameType" />
+                <ScalarProperty Name="GameId" ColumnName="GameId" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLikes">
+            <EntityTypeMapping TypeName="GamePortal.UserLike">
+              <MappingFragment StoreEntitySet="UserLike">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsLike" ColumnName="IsLike" />
+                <ScalarProperty Name="LikeLogin" ColumnName="LikeLogin" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineCounters">
+            <EntityTypeMapping TypeName="GamePortal.OnlineCounter">
+              <MappingFragment StoreEntitySet="OnlineCounter">
+                <ScalarProperty Name="dateTime" ColumnName="dateTime" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,3644 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Agot2p6Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Arrow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StartTerrainName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EndTerrainName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ArrowType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Battle">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AttackTerrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefenceTerrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AttackUser" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DefenceUser" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BattleUser">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BattleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="HomeCardType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Strength" Type="int" />
+          <Property Name="AdditionalEffect" Type="nvarchar(max)" />
+          <Property Name="IsWinner" Type="bit" />
+          <Property Name="RandomDeskId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="DoType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatorLogin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="OpenTime" Type="datetimeoffset" Precision="7" />
+          <Property Name="CloseTime" Type="datetimeoffset" Precision="7" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="StepIndex" Type="int" Nullable="false" />
+          <Property Name="MessageIndex" Type="int" Nullable="false" />
+          <Property Name="Type" Type="int" Nullable="false" />
+          <Property Name="MindRate" Type="int" Nullable="false" />
+          <Property Name="HonorRate" Type="int" Nullable="false" />
+          <Property Name="LikeRate" Type="int" Nullable="false" />
+          <Property Name="DurationRate" Type="int" Nullable="false" />
+          <Property Name="ThroneProgress" Type="int" Nullable="false" />
+          <Property Name="RandomIndex" Type="int" Nullable="false" />
+          <Property Name="IsRandomSkull" Type="bit" Nullable="false" />
+          <Property Name="IsDeleteIgnore" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GameException">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" />
+          <Property Name="Login" Type="nvarchar(max)" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="IsFull" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GameInfo">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Turn" Type="int" Nullable="false" />
+          <Property Name="Barbarian" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GamePoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="GamePointType" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GamePointType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GameUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" />
+          <Property Name="HomeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastUpdate" Type="datetimeoffset" Precision="7" Nullable="false" />
+          <Property Name="NeedReConnect" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GameUserInfo">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Power" Type="int" Nullable="false" />
+          <Property Name="Supply" Type="int" Nullable="false" />
+          <Property Name="ThroneInfluence" Type="int" Nullable="false" />
+          <Property Name="BladeInfluence" Type="int" Nullable="false" />
+          <Property Name="RavenInfluence" Type="int" Nullable="false" />
+          <Property Name="IsBladeUse" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GameUserTerrain">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Terrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Garrison">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TokenType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Terrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Strength" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HomeCardType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HomeType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Strength" Type="int" Nullable="false" />
+          <Property Name="Attack" Type="int" Nullable="false" />
+          <Property Name="Defence" Type="int" Nullable="false" />
+          <Property Name="Specialization" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="HomeType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Terrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="March">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SourceOrder" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsTerrainHold" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MarchUnit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Unit" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Terrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UnitType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ObjectPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Terrain" Type="nvarchar" MaxLength="50" />
+          <Property Name="Symbolic" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="GamePoint" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OrderType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Terrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TokenType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsSpecial" Type="bit" Nullable="false" />
+          <Property Name="Strength" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="DoType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PowerCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TokenType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Terrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Raid">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TargetOrder" Type="uniqueidentifier" />
+          <Property Name="SourceOrder" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RandomDesk">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Strength" Type="int" Nullable="false" />
+          <Property Name="Attack" Type="bit" Nullable="false" />
+          <Property Name="Defence" Type="bit" Nullable="false" />
+          <Property Name="Skull" Type="bit" Nullable="false" />
+          <Property Name="PlayCount" Type="int" Nullable="false" />
+          <Property Name="fileName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Raven">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StepType" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GameUser" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StepType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsFull" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StepType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Support">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SupportUser" Type="uniqueidentifier" />
+          <Property Name="BattleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Symbolic">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Terrain">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TerrainType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Supply" Type="int" Nullable="false" />
+          <Property Name="Power" Type="int" Nullable="false" />
+          <Property Name="Strength" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TerrainTerrain">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Terrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="JoinTerrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TerrainType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TokenPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Terrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TokenType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GamePoint" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TokenType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrackPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TrackType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="GamePoint" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrackType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UnitType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Terrain" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsWounded" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TokenType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Strength" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsedHomeCard">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+            <PropertyRef Name="HomeCardType" />
+          </Key>
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="HomeCardType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="VesterosAction">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ActionNumber" Type="int" />
+          <Property Name="VesterosDecks" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VesterosActionType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VesterosCardAction">
+          <Key>
+            <PropertyRef Name="VesterosCardType" />
+            <PropertyRef Name="VesterosActionType" />
+          </Key>
+          <Property Name="VesterosCardType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="VesterosActionType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ActionNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VesterosCardType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DecksNumber" Type="int" Nullable="false" />
+          <Property Name="BarbarianFlag" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="PlayCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VesterosDecks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="VesterosCardType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsFull" Type="bit" Nullable="false" />
+          <Property Name="VesterosActionType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sort" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Voting">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Game" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PowerCount" Type="int" Nullable="false" />
+          <Property Name="Target" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Arrow_Step">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Arrow" Type="Self.Arrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Arrow">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Battle_GameInfo">
+          <End Role="GameInfo" Type="Self.GameInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Battle" Type="Self.Battle" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GameInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Battle">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BattleUser_Step">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="BattleUser" Type="Self.BattleUser" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="BattleUser">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameInfo_Step">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GameInfo" Type="Self.GameInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="GameInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GamePoint_GamePointType">
+          <End Role="GamePointType" Type="Self.GamePointType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GamePoint" Type="Self.GamePoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GamePointType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GamePoint">
+              <PropertyRef Name="GamePointType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameUser_HomeType">
+          <End Role="HomeType" Type="Self.HomeType" Multiplicity="0..1" />
+          <End Role="GameUser" Type="Self.GameUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="GameUser">
+              <PropertyRef Name="HomeType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameUserInfo_Step">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GameUserInfo" Type="Self.GameUserInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameUserTerrain_GameUserInfo">
+          <End Role="GameUserInfo" Type="Self.GameUserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GameUserTerrain" Type="Self.GameUserTerrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="GameUserTerrain">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Garrison_GameInfo">
+          <End Role="GameInfo" Type="Self.GameInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Garrison" Type="Self.Garrison" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Garrison">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Garrison_Terrain">
+          <End Role="Terrain" Type="Self.Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Garrison" Type="Self.Garrison" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Garrison">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Garrison_TokenType">
+          <End Role="TokenType" Type="Self.TokenType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Garrison" Type="Self.Garrison" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Garrison">
+              <PropertyRef Name="TokenType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HomeCard_HomeCardType">
+          <End Role="HomeCardType" Type="Self.HomeCardType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsedHomeCard" Type="Self.UsedHomeCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeCardType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="UsedHomeCard">
+              <PropertyRef Name="HomeCardType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HomeCardType_HomeType">
+          <End Role="HomeType" Type="Self.HomeType" Multiplicity="1" />
+          <End Role="HomeCardType" Type="Self.HomeCardType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="HomeCardType">
+              <PropertyRef Name="HomeType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HomeTerrain_Terrain">
+          <End Role="Terrain" Type="Self.Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GameUserTerrain" Type="Self.GameUserTerrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="GameUserTerrain">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JoinTerrain_Terrain">
+          <End Role="Terrain" Type="Self.Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TerrainTerrain" Type="Self.TerrainTerrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="TerrainTerrain">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_March_Step">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="March" Type="Self.March" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="March">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarchUnit_March">
+          <End Role="March" Type="Self.March" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MarchUnit" Type="Self.MarchUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="March">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="MarchUnit">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Step1">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ObjectPoint_Symbolic">
+          <End Role="Symbolic" Type="Self.Symbolic" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ObjectPoint" Type="Self.ObjectPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Symbolic">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ObjectPoint">
+              <PropertyRef Name="Symbolic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_GameUserInfo">
+          <End Role="GameUserInfo" Type="Self.GameUserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_OrderType">
+          <End Role="OrderType" Type="Self.OrderType" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="OrderType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Terrain">
+          <End Role="Terrain" Type="Self.Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderType_DoType">
+          <End Role="DoType" Type="Self.DoType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderType" Type="Self.OrderType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="OrderType">
+              <PropertyRef Name="DoType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderType_TokenType">
+          <End Role="TokenType" Type="Self.TokenType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderType" Type="Self.OrderType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="OrderType">
+              <PropertyRef Name="TokenType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerCounter_GameUserInfo">
+          <End Role="GameUserInfo" Type="Self.GameUserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PowerCounter" Type="Self.PowerCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="PowerCounter">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerCounter_Terrain">
+          <End Role="Terrain" Type="Self.Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PowerCounter" Type="Self.PowerCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="PowerCounter">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerCounter_TokenType">
+          <End Role="TokenType" Type="Self.TokenType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PowerCounter" Type="Self.PowerCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="PowerCounter">
+              <PropertyRef Name="TokenType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Raid_Step">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Raid" Type="Self.Raid" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Raid">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Raven_Step">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Raven" Type="Self.Raven" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Raven">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_GameUser">
+          <End Role="GameUser" Type="Self.GameUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Step" Type="Self.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="GameUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_StepType">
+          <End Role="StepType" Type="Self.StepType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Step" Type="Self.Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StepType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="StepType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Support_Step">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Support" Type="Self.Support" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Support">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TerainPointPosition_Terrain">
+          <End Role="Terrain" Type="Self.Terrain" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ObjectPoint" Type="Self.ObjectPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ObjectPoint">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Terrain_TerrainType">
+          <End Role="TerrainType" Type="Self.TerrainType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Terrain" Type="Self.Terrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TerrainType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Terrain">
+              <PropertyRef Name="TerrainType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TerrainPoint_Point">
+          <End Role="GamePoint" Type="Self.GamePoint" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ObjectPoint" Type="Self.ObjectPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GamePoint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ObjectPoint">
+              <PropertyRef Name="GamePoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TerrainTerrain_Terrain">
+          <End Role="Terrain" Type="Self.Terrain" Multiplicity="1" />
+          <End Role="TerrainTerrain" Type="Self.TerrainTerrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="TerrainTerrain">
+              <PropertyRef Name="JoinTerrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenPoint_Point">
+          <End Role="GamePoint" Type="Self.GamePoint" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TokenPoint" Type="Self.TokenPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GamePoint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TokenPoint">
+              <PropertyRef Name="GamePoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenPosition_Terrain">
+          <End Role="Terrain" Type="Self.Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TokenPoint" Type="Self.TokenPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="TokenPoint">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenPosition_TokenType">
+          <End Role="TokenType" Type="Self.TokenType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TokenPoint" Type="Self.TokenPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="TokenPoint">
+              <PropertyRef Name="TokenType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrackPoint_Point">
+          <End Role="GamePoint" Type="Self.GamePoint" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TrackPoint" Type="Self.TrackPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GamePoint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrackPoint">
+              <PropertyRef Name="GamePoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrackPosition_TrackType">
+          <End Role="TrackType" Type="Self.TrackType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TrackPoint" Type="Self.TrackPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrackType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="TrackPoint">
+              <PropertyRef Name="TrackType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unit_GameUserInfo">
+          <End Role="GameUserInfo" Type="Self.GameUserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unit_Terrain">
+          <End Role="Terrain" Type="Self.Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unit_UnitType">
+          <End Role="UnitType" Type="Self.UnitType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="UnitType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UnitType_TokenType">
+          <End Role="TokenType" Type="Self.TokenType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UnitType" Type="Self.UnitType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="UnitType">
+              <PropertyRef Name="TokenType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsedHomeCard_GameUserInfo">
+          <End Role="GameUserInfo" Type="Self.GameUserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsedHomeCard" Type="Self.UsedHomeCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="UsedHomeCard">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="GameUser" Type="Self.GameUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameUser">
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosAction_Step">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VesterosAction" Type="Self.VesterosAction" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="VesterosAction">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosCardAction_VesterosActionType">
+          <End Role="VesterosActionType" Type="Self.VesterosActionType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VesterosCardAction" Type="Self.VesterosCardAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VesterosActionType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="VesterosCardAction">
+              <PropertyRef Name="VesterosActionType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosCardAction_VesterosCardType">
+          <End Role="VesterosCardType" Type="Self.VesterosCardType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VesterosCardAction" Type="Self.VesterosCardAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VesterosCardType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VesterosCardAction">
+              <PropertyRef Name="VesterosCardType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosDecks_GameInfo">
+          <End Role="GameInfo" Type="Self.GameInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VesterosDecks" Type="Self.VesterosDecks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="VesterosDecks">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosDecks_VesterosActionType">
+          <End Role="VesterosActionType" Type="Self.VesterosActionType" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VesterosDecks" Type="Self.VesterosDecks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VesterosActionType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="VesterosDecks">
+              <PropertyRef Name="VesterosActionType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosDecks_VesterosCardType">
+          <End Role="VesterosCardType" Type="Self.VesterosCardType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VesterosDecks" Type="Self.VesterosDecks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VesterosCardType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VesterosDecks">
+              <PropertyRef Name="VesterosCardType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voting_Step">
+          <End Role="Step" Type="Self.Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Voting" Type="Self.Voting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Voting">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Agot2p6ModelContainer">
+          <EntitySet Name="Arrow" EntityType="Self.Arrow" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Battle" EntityType="Self.Battle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BattleUser" EntityType="Self.BattleUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoType" EntityType="Self.DoType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameException" EntityType="Self.GameException" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameInfo" EntityType="Self.GameInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GamePoint" EntityType="Self.GamePoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GamePointType" EntityType="Self.GamePointType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameUser" EntityType="Self.GameUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameUserInfo" EntityType="Self.GameUserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GameUserTerrain" EntityType="Self.GameUserTerrain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Garrison" EntityType="Self.Garrison" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeCardType" EntityType="Self.HomeCardType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HomeType" EntityType="Self.HomeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="March" EntityType="Self.March" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MarchUnit" EntityType="Self.MarchUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Message" EntityType="Self.Message" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ObjectPoint" EntityType="Self.ObjectPoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderType" EntityType="Self.OrderType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PowerCounter" EntityType="Self.PowerCounter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Raid" EntityType="Self.Raid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RandomDesk" EntityType="Self.RandomDesk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Raven" EntityType="Self.Raven" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Step" EntityType="Self.Step" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StepType" EntityType="Self.StepType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Support" EntityType="Self.Support" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Symbolic" EntityType="Self.Symbolic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Terrain" EntityType="Self.Terrain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TerrainTerrain" EntityType="Self.TerrainTerrain" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TerrainType" EntityType="Self.TerrainType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TokenPoint" EntityType="Self.TokenPoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TokenType" EntityType="Self.TokenType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrackPoint" EntityType="Self.TrackPoint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrackType" EntityType="Self.TrackType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitType" EntityType="Self.UnitType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsedHomeCard" EntityType="Self.UsedHomeCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VesterosAction" EntityType="Self.VesterosAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VesterosActionType" EntityType="Self.VesterosActionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VesterosCardAction" EntityType="Self.VesterosCardAction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VesterosCardType" EntityType="Self.VesterosCardType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VesterosDecks" EntityType="Self.VesterosDecks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voting" EntityType="Self.Voting" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Arrow_Step" Association="Self.FK_Arrow_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Arrow" EntitySet="Arrow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Battle_GameInfo" Association="Self.FK_Battle_GameInfo">
+            <End Role="GameInfo" EntitySet="GameInfo" />
+            <End Role="Battle" EntitySet="Battle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BattleUser_Step" Association="Self.FK_BattleUser_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="BattleUser" EntitySet="BattleUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameInfo_Step" Association="Self.FK_GameInfo_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="GameInfo" EntitySet="GameInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GamePoint_GamePointType" Association="Self.FK_GamePoint_GamePointType">
+            <End Role="GamePointType" EntitySet="GamePointType" />
+            <End Role="GamePoint" EntitySet="GamePoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameUser_HomeType" Association="Self.FK_GameUser_HomeType">
+            <End Role="HomeType" EntitySet="HomeType" />
+            <End Role="GameUser" EntitySet="GameUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameUserInfo_Step" Association="Self.FK_GameUserInfo_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameUserTerrain_GameUserInfo" Association="Self.FK_GameUserTerrain_GameUserInfo">
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+            <End Role="GameUserTerrain" EntitySet="GameUserTerrain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Garrison_GameInfo" Association="Self.FK_Garrison_GameInfo">
+            <End Role="GameInfo" EntitySet="GameInfo" />
+            <End Role="Garrison" EntitySet="Garrison" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Garrison_Terrain" Association="Self.FK_Garrison_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="Garrison" EntitySet="Garrison" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Garrison_TokenType" Association="Self.FK_Garrison_TokenType">
+            <End Role="TokenType" EntitySet="TokenType" />
+            <End Role="Garrison" EntitySet="Garrison" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeCard_HomeCardType" Association="Self.FK_HomeCard_HomeCardType">
+            <End Role="HomeCardType" EntitySet="HomeCardType" />
+            <End Role="UsedHomeCard" EntitySet="UsedHomeCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeCardType_HomeType" Association="Self.FK_HomeCardType_HomeType">
+            <End Role="HomeType" EntitySet="HomeType" />
+            <End Role="HomeCardType" EntitySet="HomeCardType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeTerrain_Terrain" Association="Self.FK_HomeTerrain_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="GameUserTerrain" EntitySet="GameUserTerrain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JoinTerrain_Terrain" Association="Self.FK_JoinTerrain_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="TerrainTerrain" EntitySet="TerrainTerrain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_March_Step" Association="Self.FK_March_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="March" EntitySet="March" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarchUnit_March" Association="Self.FK_MarchUnit_March">
+            <End Role="March" EntitySet="March" />
+            <End Role="MarchUnit" EntitySet="MarchUnit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Step1" Association="Self.FK_Message_Step1">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObjectPoint_Symbolic" Association="Self.FK_ObjectPoint_Symbolic">
+            <End Role="Symbolic" EntitySet="Symbolic" />
+            <End Role="ObjectPoint" EntitySet="ObjectPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_GameUserInfo" Association="Self.FK_Order_GameUserInfo">
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderType" Association="Self.FK_Order_OrderType">
+            <End Role="OrderType" EntitySet="OrderType" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Terrain" Association="Self.FK_Order_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderType_DoType" Association="Self.FK_OrderType_DoType">
+            <End Role="DoType" EntitySet="DoType" />
+            <End Role="OrderType" EntitySet="OrderType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderType_TokenType" Association="Self.FK_OrderType_TokenType">
+            <End Role="TokenType" EntitySet="TokenType" />
+            <End Role="OrderType" EntitySet="OrderType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerCounter_GameUserInfo" Association="Self.FK_PowerCounter_GameUserInfo">
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+            <End Role="PowerCounter" EntitySet="PowerCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerCounter_Terrain" Association="Self.FK_PowerCounter_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="PowerCounter" EntitySet="PowerCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerCounter_TokenType" Association="Self.FK_PowerCounter_TokenType">
+            <End Role="TokenType" EntitySet="TokenType" />
+            <End Role="PowerCounter" EntitySet="PowerCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Raid_Step" Association="Self.FK_Raid_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Raid" EntitySet="Raid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Raven_Step" Association="Self.FK_Raven_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Raven" EntitySet="Raven" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_GameUser" Association="Self.FK_Step_GameUser">
+            <End Role="GameUser" EntitySet="GameUser" />
+            <End Role="Step" EntitySet="Step" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_StepType" Association="Self.FK_Step_StepType">
+            <End Role="StepType" EntitySet="StepType" />
+            <End Role="Step" EntitySet="Step" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Support_Step" Association="Self.FK_Support_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Support" EntitySet="Support" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TerainPointPosition_Terrain" Association="Self.FK_TerainPointPosition_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="ObjectPoint" EntitySet="ObjectPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Terrain_TerrainType" Association="Self.FK_Terrain_TerrainType">
+            <End Role="TerrainType" EntitySet="TerrainType" />
+            <End Role="Terrain" EntitySet="Terrain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TerrainPoint_Point" Association="Self.FK_TerrainPoint_Point">
+            <End Role="GamePoint" EntitySet="GamePoint" />
+            <End Role="ObjectPoint" EntitySet="ObjectPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TerrainTerrain_Terrain" Association="Self.FK_TerrainTerrain_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="TerrainTerrain" EntitySet="TerrainTerrain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenPoint_Point" Association="Self.FK_TokenPoint_Point">
+            <End Role="GamePoint" EntitySet="GamePoint" />
+            <End Role="TokenPoint" EntitySet="TokenPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenPosition_Terrain" Association="Self.FK_TokenPosition_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="TokenPoint" EntitySet="TokenPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenPosition_TokenType" Association="Self.FK_TokenPosition_TokenType">
+            <End Role="TokenType" EntitySet="TokenType" />
+            <End Role="TokenPoint" EntitySet="TokenPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrackPoint_Point" Association="Self.FK_TrackPoint_Point">
+            <End Role="GamePoint" EntitySet="GamePoint" />
+            <End Role="TrackPoint" EntitySet="TrackPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrackPosition_TrackType" Association="Self.FK_TrackPosition_TrackType">
+            <End Role="TrackType" EntitySet="TrackType" />
+            <End Role="TrackPoint" EntitySet="TrackPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unit_GameUserInfo" Association="Self.FK_Unit_GameUserInfo">
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+            <End Role="Unit" EntitySet="Unit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unit_Terrain" Association="Self.FK_Unit_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="Unit" EntitySet="Unit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unit_UnitType" Association="Self.FK_Unit_UnitType">
+            <End Role="UnitType" EntitySet="UnitType" />
+            <End Role="Unit" EntitySet="Unit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnitType_TokenType" Association="Self.FK_UnitType_TokenType">
+            <End Role="TokenType" EntitySet="TokenType" />
+            <End Role="UnitType" EntitySet="UnitType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsedHomeCard_GameUserInfo" Association="Self.FK_UsedHomeCard_GameUserInfo">
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+            <End Role="UsedHomeCard" EntitySet="UsedHomeCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Game" Association="Self.FK_User_Game">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="GameUser" EntitySet="GameUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosAction_Step" Association="Self.FK_VesterosAction_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="VesterosAction" EntitySet="VesterosAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosCardAction_VesterosActionType" Association="Self.FK_VesterosCardAction_VesterosActionType">
+            <End Role="VesterosActionType" EntitySet="VesterosActionType" />
+            <End Role="VesterosCardAction" EntitySet="VesterosCardAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosCardAction_VesterosCardType" Association="Self.FK_VesterosCardAction_VesterosCardType">
+            <End Role="VesterosCardType" EntitySet="VesterosCardType" />
+            <End Role="VesterosCardAction" EntitySet="VesterosCardAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosDecks_GameInfo" Association="Self.FK_VesterosDecks_GameInfo">
+            <End Role="GameInfo" EntitySet="GameInfo" />
+            <End Role="VesterosDecks" EntitySet="VesterosDecks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosDecks_VesterosActionType" Association="Self.FK_VesterosDecks_VesterosActionType">
+            <End Role="VesterosActionType" EntitySet="VesterosActionType" />
+            <End Role="VesterosDecks" EntitySet="VesterosDecks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosDecks_VesterosCardType" Association="Self.FK_VesterosDecks_VesterosCardType">
+            <End Role="VesterosCardType" EntitySet="VesterosCardType" />
+            <End Role="VesterosDecks" EntitySet="VesterosDecks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voting_Step" Association="Self.FK_Voting_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Voting" EntitySet="Voting" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Agot2p6Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Agot2p6Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Arrow" EntityType="Agot2p6Model.Arrow" />
+          <EntitySet Name="Battle" EntityType="Agot2p6Model.Battle" />
+          <EntitySet Name="BattleUser" EntityType="Agot2p6Model.BattleUser" />
+          <EntitySet Name="DoType" EntityType="Agot2p6Model.DoType" />
+          <EntitySet Name="Game" EntityType="Agot2p6Model.Game" />
+          <EntitySet Name="GameException" EntityType="Agot2p6Model.GameException" />
+          <EntitySet Name="GameInfo" EntityType="Agot2p6Model.GameInfo" />
+          <EntitySet Name="GamePoint" EntityType="Agot2p6Model.GamePoint" />
+          <EntitySet Name="GamePointType" EntityType="Agot2p6Model.GamePointType" />
+          <EntitySet Name="GameUser" EntityType="Agot2p6Model.GameUser" />
+          <EntitySet Name="GameUserInfo" EntityType="Agot2p6Model.GameUserInfo" />
+          <EntitySet Name="GameUserTerrain" EntityType="Agot2p6Model.GameUserTerrain" />
+          <EntitySet Name="Garrison" EntityType="Agot2p6Model.Garrison" />
+          <EntitySet Name="HomeCardType" EntityType="Agot2p6Model.HomeCardType" />
+          <EntitySet Name="HomeType" EntityType="Agot2p6Model.HomeType" />
+          <EntitySet Name="March" EntityType="Agot2p6Model.March" />
+          <EntitySet Name="MarchUnit" EntityType="Agot2p6Model.MarchUnit" />
+          <EntitySet Name="Message" EntityType="Agot2p6Model.Message" />
+          <EntitySet Name="ObjectPoint" EntityType="Agot2p6Model.ObjectPoint" />
+          <EntitySet Name="Order" EntityType="Agot2p6Model.Order" />
+          <EntitySet Name="OrderType" EntityType="Agot2p6Model.OrderType" />
+          <EntitySet Name="PowerCounter" EntityType="Agot2p6Model.PowerCounter" />
+          <EntitySet Name="Raid" EntityType="Agot2p6Model.Raid" />
+          <EntitySet Name="RandomDesk" EntityType="Agot2p6Model.RandomDesk" />
+          <EntitySet Name="Raven" EntityType="Agot2p6Model.Raven" />
+          <EntitySet Name="Step" EntityType="Agot2p6Model.Step" />
+          <EntitySet Name="StepType" EntityType="Agot2p6Model.StepType" />
+          <EntitySet Name="Support" EntityType="Agot2p6Model.Support" />
+          <EntitySet Name="Symbolic" EntityType="Agot2p6Model.Symbolic" />
+          <EntitySet Name="Terrain" EntityType="Agot2p6Model.Terrain" />
+          <EntitySet Name="TerrainTerrain" EntityType="Agot2p6Model.TerrainTerrain" />
+          <EntitySet Name="TerrainType" EntityType="Agot2p6Model.TerrainType" />
+          <EntitySet Name="TokenPoint" EntityType="Agot2p6Model.TokenPoint" />
+          <EntitySet Name="TokenType" EntityType="Agot2p6Model.TokenType" />
+          <EntitySet Name="TrackPoint" EntityType="Agot2p6Model.TrackPoint" />
+          <EntitySet Name="TrackType" EntityType="Agot2p6Model.TrackType" />
+          <EntitySet Name="Unit" EntityType="Agot2p6Model.Unit" />
+          <EntitySet Name="UnitType" EntityType="Agot2p6Model.UnitType" />
+          <EntitySet Name="UsedHomeCard" EntityType="Agot2p6Model.UsedHomeCard" />
+          <EntitySet Name="VesterosAction" EntityType="Agot2p6Model.VesterosAction" />
+          <EntitySet Name="VesterosActionType" EntityType="Agot2p6Model.VesterosActionType" />
+          <EntitySet Name="VesterosCardAction" EntityType="Agot2p6Model.VesterosCardAction" />
+          <EntitySet Name="VesterosCardType" EntityType="Agot2p6Model.VesterosCardType" />
+          <EntitySet Name="VesterosDecks" EntityType="Agot2p6Model.VesterosDecks" />
+          <EntitySet Name="Voting" EntityType="Agot2p6Model.Voting" />
+          <AssociationSet Name="FK_Arrow_Step" Association="Agot2p6Model.FK_Arrow_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Arrow" EntitySet="Arrow" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Battle_GameInfo" Association="Agot2p6Model.FK_Battle_GameInfo">
+            <End Role="GameInfo" EntitySet="GameInfo" />
+            <End Role="Battle" EntitySet="Battle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BattleUser_Step" Association="Agot2p6Model.FK_BattleUser_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="BattleUser" EntitySet="BattleUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderType_DoType" Association="Agot2p6Model.FK_OrderType_DoType">
+            <End Role="DoType" EntitySet="DoType" />
+            <End Role="OrderType" EntitySet="OrderType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Game" Association="Agot2p6Model.FK_User_Game">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="GameUser" EntitySet="GameUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameInfo_Step" Association="Agot2p6Model.FK_GameInfo_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="GameInfo" EntitySet="GameInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Garrison_GameInfo" Association="Agot2p6Model.FK_Garrison_GameInfo">
+            <End Role="GameInfo" EntitySet="GameInfo" />
+            <End Role="Garrison" EntitySet="Garrison" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosDecks_GameInfo" Association="Agot2p6Model.FK_VesterosDecks_GameInfo">
+            <End Role="GameInfo" EntitySet="GameInfo" />
+            <End Role="VesterosDecks" EntitySet="VesterosDecks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GamePoint_GamePointType" Association="Agot2p6Model.FK_GamePoint_GamePointType">
+            <End Role="GamePointType" EntitySet="GamePointType" />
+            <End Role="GamePoint" EntitySet="GamePoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TerrainPoint_Point" Association="Agot2p6Model.FK_TerrainPoint_Point">
+            <End Role="GamePoint" EntitySet="GamePoint" />
+            <End Role="ObjectPoint" EntitySet="ObjectPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenPoint_Point" Association="Agot2p6Model.FK_TokenPoint_Point">
+            <End Role="GamePoint" EntitySet="GamePoint" />
+            <End Role="TokenPoint" EntitySet="TokenPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrackPoint_Point" Association="Agot2p6Model.FK_TrackPoint_Point">
+            <End Role="GamePoint" EntitySet="GamePoint" />
+            <End Role="TrackPoint" EntitySet="TrackPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameUser_HomeType" Association="Agot2p6Model.FK_GameUser_HomeType">
+            <End Role="HomeType" EntitySet="HomeType" />
+            <End Role="GameUser" EntitySet="GameUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_GameUser" Association="Agot2p6Model.FK_Step_GameUser">
+            <End Role="GameUser" EntitySet="GameUser" />
+            <End Role="Step" EntitySet="Step" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameUserInfo_Step" Association="Agot2p6Model.FK_GameUserInfo_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GameUserTerrain_GameUserInfo" Association="Agot2p6Model.FK_GameUserTerrain_GameUserInfo">
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+            <End Role="GameUserTerrain" EntitySet="GameUserTerrain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_GameUserInfo" Association="Agot2p6Model.FK_Order_GameUserInfo">
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerCounter_GameUserInfo" Association="Agot2p6Model.FK_PowerCounter_GameUserInfo">
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+            <End Role="PowerCounter" EntitySet="PowerCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unit_GameUserInfo" Association="Agot2p6Model.FK_Unit_GameUserInfo">
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+            <End Role="Unit" EntitySet="Unit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsedHomeCard_GameUserInfo" Association="Agot2p6Model.FK_UsedHomeCard_GameUserInfo">
+            <End Role="GameUserInfo" EntitySet="GameUserInfo" />
+            <End Role="UsedHomeCard" EntitySet="UsedHomeCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeTerrain_Terrain" Association="Agot2p6Model.FK_HomeTerrain_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="GameUserTerrain" EntitySet="GameUserTerrain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Garrison_Terrain" Association="Agot2p6Model.FK_Garrison_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="Garrison" EntitySet="Garrison" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Garrison_TokenType" Association="Agot2p6Model.FK_Garrison_TokenType">
+            <End Role="TokenType" EntitySet="TokenType" />
+            <End Role="Garrison" EntitySet="Garrison" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeCard_HomeCardType" Association="Agot2p6Model.FK_HomeCard_HomeCardType">
+            <End Role="HomeCardType" EntitySet="HomeCardType" />
+            <End Role="UsedHomeCard" EntitySet="UsedHomeCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HomeCardType_HomeType" Association="Agot2p6Model.FK_HomeCardType_HomeType">
+            <End Role="HomeType" EntitySet="HomeType" />
+            <End Role="HomeCardType" EntitySet="HomeCardType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_March_Step" Association="Agot2p6Model.FK_March_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="March" EntitySet="March" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MarchUnit_March" Association="Agot2p6Model.FK_MarchUnit_March">
+            <End Role="March" EntitySet="March" />
+            <End Role="MarchUnit" EntitySet="MarchUnit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Message_Step1" Association="Agot2p6Model.FK_Message_Step1">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Message" EntitySet="Message" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObjectPoint_Symbolic" Association="Agot2p6Model.FK_ObjectPoint_Symbolic">
+            <End Role="Symbolic" EntitySet="Symbolic" />
+            <End Role="ObjectPoint" EntitySet="ObjectPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TerainPointPosition_Terrain" Association="Agot2p6Model.FK_TerainPointPosition_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="ObjectPoint" EntitySet="ObjectPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_OrderType" Association="Agot2p6Model.FK_Order_OrderType">
+            <End Role="OrderType" EntitySet="OrderType" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Terrain" Association="Agot2p6Model.FK_Order_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderType_TokenType" Association="Agot2p6Model.FK_OrderType_TokenType">
+            <End Role="TokenType" EntitySet="TokenType" />
+            <End Role="OrderType" EntitySet="OrderType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerCounter_Terrain" Association="Agot2p6Model.FK_PowerCounter_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="PowerCounter" EntitySet="PowerCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PowerCounter_TokenType" Association="Agot2p6Model.FK_PowerCounter_TokenType">
+            <End Role="TokenType" EntitySet="TokenType" />
+            <End Role="PowerCounter" EntitySet="PowerCounter" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Raid_Step" Association="Agot2p6Model.FK_Raid_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Raid" EntitySet="Raid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Raven_Step" Association="Agot2p6Model.FK_Raven_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Raven" EntitySet="Raven" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Step_StepType" Association="Agot2p6Model.FK_Step_StepType">
+            <End Role="StepType" EntitySet="StepType" />
+            <End Role="Step" EntitySet="Step" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Support_Step" Association="Agot2p6Model.FK_Support_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Support" EntitySet="Support" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosAction_Step" Association="Agot2p6Model.FK_VesterosAction_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="VesterosAction" EntitySet="VesterosAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voting_Step" Association="Agot2p6Model.FK_Voting_Step">
+            <End Role="Step" EntitySet="Step" />
+            <End Role="Voting" EntitySet="Voting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JoinTerrain_Terrain" Association="Agot2p6Model.FK_JoinTerrain_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="TerrainTerrain" EntitySet="TerrainTerrain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Terrain_TerrainType" Association="Agot2p6Model.FK_Terrain_TerrainType">
+            <End Role="TerrainType" EntitySet="TerrainType" />
+            <End Role="Terrain" EntitySet="Terrain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TerrainTerrain_Terrain" Association="Agot2p6Model.FK_TerrainTerrain_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="TerrainTerrain" EntitySet="TerrainTerrain" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenPosition_Terrain" Association="Agot2p6Model.FK_TokenPosition_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="TokenPoint" EntitySet="TokenPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unit_Terrain" Association="Agot2p6Model.FK_Unit_Terrain">
+            <End Role="Terrain" EntitySet="Terrain" />
+            <End Role="Unit" EntitySet="Unit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TokenPosition_TokenType" Association="Agot2p6Model.FK_TokenPosition_TokenType">
+            <End Role="TokenType" EntitySet="TokenType" />
+            <End Role="TokenPoint" EntitySet="TokenPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnitType_TokenType" Association="Agot2p6Model.FK_UnitType_TokenType">
+            <End Role="TokenType" EntitySet="TokenType" />
+            <End Role="UnitType" EntitySet="UnitType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrackPosition_TrackType" Association="Agot2p6Model.FK_TrackPosition_TrackType">
+            <End Role="TrackType" EntitySet="TrackType" />
+            <End Role="TrackPoint" EntitySet="TrackPoint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Unit_UnitType" Association="Agot2p6Model.FK_Unit_UnitType">
+            <End Role="UnitType" EntitySet="UnitType" />
+            <End Role="Unit" EntitySet="Unit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosCardAction_VesterosActionType" Association="Agot2p6Model.FK_VesterosCardAction_VesterosActionType">
+            <End Role="VesterosActionType" EntitySet="VesterosActionType" />
+            <End Role="VesterosCardAction" EntitySet="VesterosCardAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosDecks_VesterosActionType" Association="Agot2p6Model.FK_VesterosDecks_VesterosActionType">
+            <End Role="VesterosActionType" EntitySet="VesterosActionType" />
+            <End Role="VesterosDecks" EntitySet="VesterosDecks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosCardAction_VesterosCardType" Association="Agot2p6Model.FK_VesterosCardAction_VesterosCardType">
+            <End Role="VesterosCardType" EntitySet="VesterosCardType" />
+            <End Role="VesterosCardAction" EntitySet="VesterosCardAction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VesterosDecks_VesterosCardType" Association="Agot2p6Model.FK_VesterosDecks_VesterosCardType">
+            <End Role="VesterosCardType" EntitySet="VesterosCardType" />
+            <End Role="VesterosDecks" EntitySet="VesterosDecks" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Arrow">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="FirstId" Type="Guid" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="StartTerrainName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EndTerrainName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ArrowType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_Arrow_Step" FromRole="Arrow" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="Battle">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="AttackTerrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DefenceTerrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AttackUser" Type="Guid" Nullable="false" />
+          <Property Name="DefenceUser" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="GameInfo" Relationship="Agot2p6Model.FK_Battle_GameInfo" FromRole="Battle" ToRole="GameInfo" />
+        </EntityType>
+        <EntityType Name="BattleUser">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="BattleId" Type="Guid" Nullable="false" />
+          <Property Name="HomeCardType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Strength" Type="Int32" />
+          <Property Name="AdditionalEffect" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsWinner" Type="Boolean" />
+          <Property Name="RandomDeskId" Type="Guid" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_BattleUser_Step" FromRole="BattleUser" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="DoType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderType" Relationship="Agot2p6Model.FK_OrderType_DoType" FromRole="DoType" ToRole="OrderType" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="CreatorLogin" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="OpenTime" Type="DateTimeOffset" Precision="7" />
+          <Property Name="CloseTime" Type="DateTimeOffset" Precision="7" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StepIndex" Type="Int32" Nullable="false" />
+          <Property Name="MessageIndex" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="Int32" Nullable="false" />
+          <Property Name="MindRate" Type="Int32" Nullable="false" />
+          <Property Name="HonorRate" Type="Int32" Nullable="false" />
+          <Property Name="LikeRate" Type="Int32" Nullable="false" />
+          <Property Name="DurationRate" Type="Int32" Nullable="false" />
+          <Property Name="ThroneProgress" Type="Int32" Nullable="false" />
+          <Property Name="RandomIndex" Type="Int32" Nullable="false" />
+          <Property Name="IsRandomSkull" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleteIgnore" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GameUser" Relationship="Agot2p6Model.FK_User_Game" FromRole="Game" ToRole="GameUser" />
+        </EntityType>
+        <EntityType Name="GameException">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Game" Type="Guid" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsFull" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GameInfo">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="Turn" Type="Int32" Nullable="false" />
+          <Property Name="Barbarian" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Battle" Relationship="Agot2p6Model.FK_Battle_GameInfo" FromRole="GameInfo" ToRole="Battle" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_GameInfo_Step" FromRole="GameInfo" ToRole="Step" />
+          <NavigationProperty Name="Garrison" Relationship="Agot2p6Model.FK_Garrison_GameInfo" FromRole="GameInfo" ToRole="Garrison" />
+          <NavigationProperty Name="VesterosDecks" Relationship="Agot2p6Model.FK_VesterosDecks_GameInfo" FromRole="GameInfo" ToRole="VesterosDecks" />
+        </EntityType>
+        <EntityType Name="GamePoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="X" Type="Double" Nullable="false" />
+          <Property Name="Y" Type="Double" Nullable="false" />
+          <Property Name="GamePointType" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="GamePointType1" Relationship="Agot2p6Model.FK_GamePoint_GamePointType" FromRole="GamePoint" ToRole="GamePointType" />
+          <NavigationProperty Name="ObjectPoint" Relationship="Agot2p6Model.FK_TerrainPoint_Point" FromRole="GamePoint" ToRole="ObjectPoint" />
+          <NavigationProperty Name="TokenPoint" Relationship="Agot2p6Model.FK_TokenPoint_Point" FromRole="GamePoint" ToRole="TokenPoint" />
+          <NavigationProperty Name="TrackPoint" Relationship="Agot2p6Model.FK_TrackPoint_Point" FromRole="GamePoint" ToRole="TrackPoint" />
+        </EntityType>
+        <EntityType Name="GamePointType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="GamePoint" Relationship="Agot2p6Model.FK_GamePoint_GamePointType" FromRole="GamePointType" ToRole="GamePoint" />
+        </EntityType>
+        <EntityType Name="GameUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HomeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastUpdate" Type="DateTimeOffset" Nullable="false" Precision="7" />
+          <Property Name="NeedReConnect" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Game1" Relationship="Agot2p6Model.FK_User_Game" FromRole="GameUser" ToRole="Game" />
+          <NavigationProperty Name="HomeType1" Relationship="Agot2p6Model.FK_GameUser_HomeType" FromRole="GameUser" ToRole="HomeType" />
+          <NavigationProperty Name="Step" Relationship="Agot2p6Model.FK_Step_GameUser" FromRole="GameUser" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="GameUserInfo">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="Power" Type="Int32" Nullable="false" />
+          <Property Name="Supply" Type="Int32" Nullable="false" />
+          <Property Name="ThroneInfluence" Type="Int32" Nullable="false" />
+          <Property Name="BladeInfluence" Type="Int32" Nullable="false" />
+          <Property Name="RavenInfluence" Type="Int32" Nullable="false" />
+          <Property Name="IsBladeUse" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_GameUserInfo_Step" FromRole="GameUserInfo" ToRole="Step" />
+          <NavigationProperty Name="GameUserTerrain" Relationship="Agot2p6Model.FK_GameUserTerrain_GameUserInfo" FromRole="GameUserInfo" ToRole="GameUserTerrain" />
+          <NavigationProperty Name="Order" Relationship="Agot2p6Model.FK_Order_GameUserInfo" FromRole="GameUserInfo" ToRole="Order" />
+          <NavigationProperty Name="PowerCounter" Relationship="Agot2p6Model.FK_PowerCounter_GameUserInfo" FromRole="GameUserInfo" ToRole="PowerCounter" />
+          <NavigationProperty Name="Unit" Relationship="Agot2p6Model.FK_Unit_GameUserInfo" FromRole="GameUserInfo" ToRole="Unit" />
+          <NavigationProperty Name="UsedHomeCard" Relationship="Agot2p6Model.FK_UsedHomeCard_GameUserInfo" FromRole="GameUserInfo" ToRole="UsedHomeCard" />
+        </EntityType>
+        <EntityType Name="GameUserTerrain">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="Terrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GameUserInfo" Relationship="Agot2p6Model.FK_GameUserTerrain_GameUserInfo" FromRole="GameUserTerrain" ToRole="GameUserInfo" />
+          <NavigationProperty Name="Terrain1" Relationship="Agot2p6Model.FK_HomeTerrain_Terrain" FromRole="GameUserTerrain" ToRole="Terrain" />
+        </EntityType>
+        <EntityType Name="Garrison">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="TokenType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Terrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Strength" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GameInfo" Relationship="Agot2p6Model.FK_Garrison_GameInfo" FromRole="Garrison" ToRole="GameInfo" />
+          <NavigationProperty Name="Terrain1" Relationship="Agot2p6Model.FK_Garrison_Terrain" FromRole="Garrison" ToRole="Terrain" />
+          <NavigationProperty Name="TokenType1" Relationship="Agot2p6Model.FK_Garrison_TokenType" FromRole="Garrison" ToRole="TokenType" />
+        </EntityType>
+        <EntityType Name="HomeCardType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HomeType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Strength" Type="Int32" Nullable="false" />
+          <Property Name="Attack" Type="Int32" Nullable="false" />
+          <Property Name="Defence" Type="Int32" Nullable="false" />
+          <Property Name="Specialization" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UsedHomeCard" Relationship="Agot2p6Model.FK_HomeCard_HomeCardType" FromRole="HomeCardType" ToRole="UsedHomeCard" />
+          <NavigationProperty Name="HomeType1" Relationship="Agot2p6Model.FK_HomeCardType_HomeType" FromRole="HomeCardType" ToRole="HomeType" />
+        </EntityType>
+        <EntityType Name="HomeType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Terrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GameUser" Relationship="Agot2p6Model.FK_GameUser_HomeType" FromRole="HomeType" ToRole="GameUser" />
+          <NavigationProperty Name="HomeCardType" Relationship="Agot2p6Model.FK_HomeCardType_HomeType" FromRole="HomeType" ToRole="HomeCardType" />
+        </EntityType>
+        <EntityType Name="March">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="SourceOrder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsTerrainHold" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_March_Step" FromRole="March" ToRole="Step" />
+          <NavigationProperty Name="MarchUnit" Relationship="Agot2p6Model.FK_MarchUnit_March" FromRole="March" ToRole="MarchUnit" />
+        </EntityType>
+        <EntityType Name="MarchUnit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="Unit" Type="Guid" Nullable="false" />
+          <Property Name="Terrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UnitType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="March" Relationship="Agot2p6Model.FK_MarchUnit_March" FromRole="MarchUnit" ToRole="March" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_Message_Step1" FromRole="Message" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="ObjectPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Terrain" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Symbolic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HomeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GamePoint" Type="Guid" Nullable="false" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GamePoint1" Relationship="Agot2p6Model.FK_TerrainPoint_Point" FromRole="ObjectPoint" ToRole="GamePoint" />
+          <NavigationProperty Name="Symbolic1" Relationship="Agot2p6Model.FK_ObjectPoint_Symbolic" FromRole="ObjectPoint" ToRole="Symbolic" />
+          <NavigationProperty Name="Terrain1" Relationship="Agot2p6Model.FK_TerainPointPosition_Terrain" FromRole="ObjectPoint" ToRole="Terrain" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="FirstId" Type="Guid" Nullable="false" />
+          <Property Name="OrderType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Terrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GameUserInfo" Relationship="Agot2p6Model.FK_Order_GameUserInfo" FromRole="Order" ToRole="GameUserInfo" />
+          <NavigationProperty Name="OrderType1" Relationship="Agot2p6Model.FK_Order_OrderType" FromRole="Order" ToRole="OrderType" />
+          <NavigationProperty Name="Terrain1" Relationship="Agot2p6Model.FK_Order_Terrain" FromRole="Order" ToRole="Terrain" />
+        </EntityType>
+        <EntityType Name="OrderType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TokenType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsSpecial" Type="Boolean" Nullable="false" />
+          <Property Name="Strength" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="DoType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DoType1" Relationship="Agot2p6Model.FK_OrderType_DoType" FromRole="OrderType" ToRole="DoType" />
+          <NavigationProperty Name="Order" Relationship="Agot2p6Model.FK_Order_OrderType" FromRole="OrderType" ToRole="Order" />
+          <NavigationProperty Name="TokenType1" Relationship="Agot2p6Model.FK_OrderType_TokenType" FromRole="OrderType" ToRole="TokenType" />
+        </EntityType>
+        <EntityType Name="PowerCounter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="TokenType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Terrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GameUserInfo" Relationship="Agot2p6Model.FK_PowerCounter_GameUserInfo" FromRole="PowerCounter" ToRole="GameUserInfo" />
+          <NavigationProperty Name="Terrain1" Relationship="Agot2p6Model.FK_PowerCounter_Terrain" FromRole="PowerCounter" ToRole="Terrain" />
+          <NavigationProperty Name="TokenType1" Relationship="Agot2p6Model.FK_PowerCounter_TokenType" FromRole="PowerCounter" ToRole="TokenType" />
+        </EntityType>
+        <EntityType Name="Raid">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="TargetOrder" Type="Guid" />
+          <Property Name="SourceOrder" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_Raid_Step" FromRole="Raid" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="RandomDesk">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Strength" Type="Int32" Nullable="false" />
+          <Property Name="Attack" Type="Boolean" Nullable="false" />
+          <Property Name="Defence" Type="Boolean" Nullable="false" />
+          <Property Name="Skull" Type="Boolean" Nullable="false" />
+          <Property Name="PlayCount" Type="Int32" Nullable="false" />
+          <Property Name="fileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Raven">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="StepType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_Raven_Step" FromRole="Raven" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="Step">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="GameUser" Type="Guid" Nullable="false" />
+          <Property Name="StepType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsFull" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Arrow" Relationship="Agot2p6Model.FK_Arrow_Step" FromRole="Step" ToRole="Arrow" />
+          <NavigationProperty Name="BattleUser" Relationship="Agot2p6Model.FK_BattleUser_Step" FromRole="Step" ToRole="BattleUser" />
+          <NavigationProperty Name="GameInfo" Relationship="Agot2p6Model.FK_GameInfo_Step" FromRole="Step" ToRole="GameInfo" />
+          <NavigationProperty Name="GameUser1" Relationship="Agot2p6Model.FK_Step_GameUser" FromRole="Step" ToRole="GameUser" />
+          <NavigationProperty Name="GameUserInfo" Relationship="Agot2p6Model.FK_GameUserInfo_Step" FromRole="Step" ToRole="GameUserInfo" />
+          <NavigationProperty Name="March" Relationship="Agot2p6Model.FK_March_Step" FromRole="Step" ToRole="March" />
+          <NavigationProperty Name="Message" Relationship="Agot2p6Model.FK_Message_Step1" FromRole="Step" ToRole="Message" />
+          <NavigationProperty Name="Raid" Relationship="Agot2p6Model.FK_Raid_Step" FromRole="Step" ToRole="Raid" />
+          <NavigationProperty Name="Raven" Relationship="Agot2p6Model.FK_Raven_Step" FromRole="Step" ToRole="Raven" />
+          <NavigationProperty Name="StepType1" Relationship="Agot2p6Model.FK_Step_StepType" FromRole="Step" ToRole="StepType" />
+          <NavigationProperty Name="Support" Relationship="Agot2p6Model.FK_Support_Step" FromRole="Step" ToRole="Support" />
+          <NavigationProperty Name="VesterosAction" Relationship="Agot2p6Model.FK_VesterosAction_Step" FromRole="Step" ToRole="VesterosAction" />
+          <NavigationProperty Name="Voting" Relationship="Agot2p6Model.FK_Voting_Step" FromRole="Step" ToRole="Voting" />
+        </EntityType>
+        <EntityType Name="StepType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Step" Relationship="Agot2p6Model.FK_Step_StepType" FromRole="StepType" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="Support">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="SupportUser" Type="Guid" />
+          <Property Name="BattleId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_Support_Step" FromRole="Support" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="Symbolic">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ObjectPoint" Relationship="Agot2p6Model.FK_ObjectPoint_Symbolic" FromRole="Symbolic" ToRole="ObjectPoint" />
+        </EntityType>
+        <EntityType Name="Terrain">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TerrainType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Supply" Type="Int32" Nullable="false" />
+          <Property Name="Power" Type="Int32" Nullable="false" />
+          <Property Name="Strength" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GameUserTerrain" Relationship="Agot2p6Model.FK_HomeTerrain_Terrain" FromRole="Terrain" ToRole="GameUserTerrain" />
+          <NavigationProperty Name="Garrison" Relationship="Agot2p6Model.FK_Garrison_Terrain" FromRole="Terrain" ToRole="Garrison" />
+          <NavigationProperty Name="ObjectPoint" Relationship="Agot2p6Model.FK_TerainPointPosition_Terrain" FromRole="Terrain" ToRole="ObjectPoint" />
+          <NavigationProperty Name="Order" Relationship="Agot2p6Model.FK_Order_Terrain" FromRole="Terrain" ToRole="Order" />
+          <NavigationProperty Name="PowerCounter" Relationship="Agot2p6Model.FK_PowerCounter_Terrain" FromRole="Terrain" ToRole="PowerCounter" />
+          <NavigationProperty Name="TerrainTerrain" Relationship="Agot2p6Model.FK_JoinTerrain_Terrain" FromRole="Terrain" ToRole="TerrainTerrain" />
+          <NavigationProperty Name="TerrainType1" Relationship="Agot2p6Model.FK_Terrain_TerrainType" FromRole="Terrain" ToRole="TerrainType" />
+          <NavigationProperty Name="TerrainTerrain1" Relationship="Agot2p6Model.FK_TerrainTerrain_Terrain" FromRole="Terrain" ToRole="TerrainTerrain" />
+          <NavigationProperty Name="TokenPoint" Relationship="Agot2p6Model.FK_TokenPosition_Terrain" FromRole="Terrain" ToRole="TokenPoint" />
+          <NavigationProperty Name="Unit" Relationship="Agot2p6Model.FK_Unit_Terrain" FromRole="Terrain" ToRole="Unit" />
+        </EntityType>
+        <EntityType Name="TerrainTerrain">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Terrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JoinTerrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Terrain1" Relationship="Agot2p6Model.FK_JoinTerrain_Terrain" FromRole="TerrainTerrain" ToRole="Terrain" />
+          <NavigationProperty Name="Terrain2" Relationship="Agot2p6Model.FK_TerrainTerrain_Terrain" FromRole="TerrainTerrain" ToRole="Terrain" />
+        </EntityType>
+        <EntityType Name="TerrainType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Terrain" Relationship="Agot2p6Model.FK_Terrain_TerrainType" FromRole="TerrainType" ToRole="Terrain" />
+        </EntityType>
+        <EntityType Name="TokenPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Terrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TokenType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GamePoint" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="GamePoint1" Relationship="Agot2p6Model.FK_TokenPoint_Point" FromRole="TokenPoint" ToRole="GamePoint" />
+          <NavigationProperty Name="Terrain1" Relationship="Agot2p6Model.FK_TokenPosition_Terrain" FromRole="TokenPoint" ToRole="Terrain" />
+          <NavigationProperty Name="TokenType1" Relationship="Agot2p6Model.FK_TokenPosition_TokenType" FromRole="TokenPoint" ToRole="TokenType" />
+        </EntityType>
+        <EntityType Name="TokenType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Garrison" Relationship="Agot2p6Model.FK_Garrison_TokenType" FromRole="TokenType" ToRole="Garrison" />
+          <NavigationProperty Name="OrderType" Relationship="Agot2p6Model.FK_OrderType_TokenType" FromRole="TokenType" ToRole="OrderType" />
+          <NavigationProperty Name="PowerCounter" Relationship="Agot2p6Model.FK_PowerCounter_TokenType" FromRole="TokenType" ToRole="PowerCounter" />
+          <NavigationProperty Name="TokenPoint" Relationship="Agot2p6Model.FK_TokenPosition_TokenType" FromRole="TokenType" ToRole="TokenPoint" />
+          <NavigationProperty Name="UnitType" Relationship="Agot2p6Model.FK_UnitType_TokenType" FromRole="TokenType" ToRole="UnitType" />
+        </EntityType>
+        <EntityType Name="TrackPoint">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="TrackType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="Int32" Nullable="false" />
+          <Property Name="GamePoint" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="GamePoint1" Relationship="Agot2p6Model.FK_TrackPoint_Point" FromRole="TrackPoint" ToRole="GamePoint" />
+          <NavigationProperty Name="TrackType1" Relationship="Agot2p6Model.FK_TrackPosition_TrackType" FromRole="TrackPoint" ToRole="TrackType" />
+        </EntityType>
+        <EntityType Name="TrackType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TrackPoint" Relationship="Agot2p6Model.FK_TrackPosition_TrackType" FromRole="TrackType" ToRole="TrackPoint" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="FirstId" Type="Guid" Nullable="false" />
+          <Property Name="UnitType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Terrain" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsWounded" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GameUserInfo" Relationship="Agot2p6Model.FK_Unit_GameUserInfo" FromRole="Unit" ToRole="GameUserInfo" />
+          <NavigationProperty Name="Terrain1" Relationship="Agot2p6Model.FK_Unit_Terrain" FromRole="Unit" ToRole="Terrain" />
+          <NavigationProperty Name="UnitType1" Relationship="Agot2p6Model.FK_Unit_UnitType" FromRole="Unit" ToRole="UnitType" />
+        </EntityType>
+        <EntityType Name="UnitType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TokenType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Strength" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TokenType1" Relationship="Agot2p6Model.FK_UnitType_TokenType" FromRole="UnitType" ToRole="TokenType" />
+          <NavigationProperty Name="Unit" Relationship="Agot2p6Model.FK_Unit_UnitType" FromRole="UnitType" ToRole="Unit" />
+        </EntityType>
+        <EntityType Name="UsedHomeCard">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+            <PropertyRef Name="HomeCardType" />
+          </Key>
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="HomeCardType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="GameUserInfo" Relationship="Agot2p6Model.FK_UsedHomeCard_GameUserInfo" FromRole="UsedHomeCard" ToRole="GameUserInfo" />
+          <NavigationProperty Name="HomeCardType1" Relationship="Agot2p6Model.FK_HomeCard_HomeCardType" FromRole="UsedHomeCard" ToRole="HomeCardType" />
+        </EntityType>
+        <EntityType Name="VesterosAction">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="ActionNumber" Type="Int32" />
+          <Property Name="VesterosDecks" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_VesterosAction_Step" FromRole="VesterosAction" ToRole="Step" />
+        </EntityType>
+        <EntityType Name="VesterosActionType">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="VesterosCardAction" Relationship="Agot2p6Model.FK_VesterosCardAction_VesterosActionType" FromRole="VesterosActionType" ToRole="VesterosCardAction" />
+          <NavigationProperty Name="VesterosDecks" Relationship="Agot2p6Model.FK_VesterosDecks_VesterosActionType" FromRole="VesterosActionType" ToRole="VesterosDecks" />
+        </EntityType>
+        <EntityType Name="VesterosCardAction">
+          <Key>
+            <PropertyRef Name="VesterosCardType" />
+            <PropertyRef Name="VesterosActionType" />
+          </Key>
+          <Property Name="VesterosCardType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VesterosActionType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ActionNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VesterosActionType1" Relationship="Agot2p6Model.FK_VesterosCardAction_VesterosActionType" FromRole="VesterosCardAction" ToRole="VesterosActionType" />
+          <NavigationProperty Name="VesterosCardType1" Relationship="Agot2p6Model.FK_VesterosCardAction_VesterosCardType" FromRole="VesterosCardAction" ToRole="VesterosCardType" />
+        </EntityType>
+        <EntityType Name="VesterosCardType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DecksNumber" Type="Int32" Nullable="false" />
+          <Property Name="BarbarianFlag" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="PlayCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VesterosCardAction" Relationship="Agot2p6Model.FK_VesterosCardAction_VesterosCardType" FromRole="VesterosCardType" ToRole="VesterosCardAction" />
+          <NavigationProperty Name="VesterosDecks" Relationship="Agot2p6Model.FK_VesterosDecks_VesterosCardType" FromRole="VesterosCardType" ToRole="VesterosDecks" />
+        </EntityType>
+        <EntityType Name="VesterosDecks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FirstId" Type="Guid" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="VesterosCardType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsFull" Type="Boolean" Nullable="false" />
+          <Property Name="VesterosActionType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GameInfo" Relationship="Agot2p6Model.FK_VesterosDecks_GameInfo" FromRole="VesterosDecks" ToRole="GameInfo" />
+          <NavigationProperty Name="VesterosActionType1" Relationship="Agot2p6Model.FK_VesterosDecks_VesterosActionType" FromRole="VesterosDecks" ToRole="VesterosActionType" />
+          <NavigationProperty Name="VesterosCardType1" Relationship="Agot2p6Model.FK_VesterosDecks_VesterosCardType" FromRole="VesterosDecks" ToRole="VesterosCardType" />
+        </EntityType>
+        <EntityType Name="Voting">
+          <Key>
+            <PropertyRef Name="Step" />
+            <PropertyRef Name="Game" />
+          </Key>
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Game" Type="Guid" Nullable="false" />
+          <Property Name="PowerCount" Type="Int32" Nullable="false" />
+          <Property Name="Target" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Step1" Relationship="Agot2p6Model.FK_Voting_Step" FromRole="Voting" ToRole="Step" />
+        </EntityType>
+        <Association Name="FK_Arrow_Step">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Arrow" Role="Arrow" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Arrow">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Battle_GameInfo">
+          <End Type="Agot2p6Model.GameInfo" Role="GameInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Battle" Role="Battle" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="GameInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Battle">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BattleUser_Step">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.BattleUser" Role="BattleUser" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="BattleUser">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderType_DoType">
+          <End Type="Agot2p6Model.DoType" Role="DoType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.OrderType" Role="OrderType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="OrderType">
+              <PropertyRef Name="DoType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Game">
+          <End Type="Agot2p6Model.Game" Role="Game" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.GameUser" Role="GameUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GameUser">
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameInfo_Step">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.GameInfo" Role="GameInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="GameInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Garrison_GameInfo">
+          <End Type="Agot2p6Model.GameInfo" Role="GameInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Garrison" Role="Garrison" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Garrison">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosDecks_GameInfo">
+          <End Type="Agot2p6Model.GameInfo" Role="GameInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.VesterosDecks" Role="VesterosDecks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="VesterosDecks">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GamePoint_GamePointType">
+          <End Type="Agot2p6Model.GamePointType" Role="GamePointType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.GamePoint" Role="GamePoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GamePointType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GamePoint">
+              <PropertyRef Name="GamePointType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TerrainPoint_Point">
+          <End Type="Agot2p6Model.GamePoint" Role="GamePoint" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.ObjectPoint" Role="ObjectPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GamePoint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ObjectPoint">
+              <PropertyRef Name="GamePoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenPoint_Point">
+          <End Type="Agot2p6Model.GamePoint" Role="GamePoint" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.TokenPoint" Role="TokenPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GamePoint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TokenPoint">
+              <PropertyRef Name="GamePoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrackPoint_Point">
+          <End Type="Agot2p6Model.GamePoint" Role="GamePoint" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.TrackPoint" Role="TrackPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GamePoint">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrackPoint">
+              <PropertyRef Name="GamePoint" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameUser_HomeType">
+          <End Type="Agot2p6Model.HomeType" Role="HomeType" Multiplicity="0..1" />
+          <End Type="Agot2p6Model.GameUser" Role="GameUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="GameUser">
+              <PropertyRef Name="HomeType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_GameUser">
+          <End Type="Agot2p6Model.GameUser" Role="GameUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="GameUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameUserInfo_Step">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.GameUserInfo" Role="GameUserInfo" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GameUserTerrain_GameUserInfo">
+          <End Type="Agot2p6Model.GameUserInfo" Role="GameUserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.GameUserTerrain" Role="GameUserTerrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="GameUserTerrain">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_GameUserInfo">
+          <End Type="Agot2p6Model.GameUserInfo" Role="GameUserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerCounter_GameUserInfo">
+          <End Type="Agot2p6Model.GameUserInfo" Role="GameUserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.PowerCounter" Role="PowerCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="PowerCounter">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unit_GameUserInfo">
+          <End Type="Agot2p6Model.GameUserInfo" Role="GameUserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Unit" Role="Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsedHomeCard_GameUserInfo">
+          <End Type="Agot2p6Model.GameUserInfo" Role="GameUserInfo" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.UsedHomeCard" Role="UsedHomeCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GameUserInfo">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="UsedHomeCard">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HomeTerrain_Terrain">
+          <End Type="Agot2p6Model.Terrain" Role="Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.GameUserTerrain" Role="GameUserTerrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="GameUserTerrain">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Garrison_Terrain">
+          <End Type="Agot2p6Model.Terrain" Role="Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Garrison" Role="Garrison" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Garrison">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Garrison_TokenType">
+          <End Type="Agot2p6Model.TokenType" Role="TokenType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Garrison" Role="Garrison" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Garrison">
+              <PropertyRef Name="TokenType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HomeCard_HomeCardType">
+          <End Type="Agot2p6Model.HomeCardType" Role="HomeCardType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.UsedHomeCard" Role="UsedHomeCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeCardType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="UsedHomeCard">
+              <PropertyRef Name="HomeCardType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HomeCardType_HomeType">
+          <End Type="Agot2p6Model.HomeType" Role="HomeType" Multiplicity="1" />
+          <End Type="Agot2p6Model.HomeCardType" Role="HomeCardType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HomeType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="HomeCardType">
+              <PropertyRef Name="HomeType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_March_Step">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.March" Role="March" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="March">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MarchUnit_March">
+          <End Type="Agot2p6Model.March" Role="March" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.MarchUnit" Role="MarchUnit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="March">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="MarchUnit">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Message_Step1">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ObjectPoint_Symbolic">
+          <End Type="Agot2p6Model.Symbolic" Role="Symbolic" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.ObjectPoint" Role="ObjectPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Symbolic">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ObjectPoint">
+              <PropertyRef Name="Symbolic" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TerainPointPosition_Terrain">
+          <End Type="Agot2p6Model.Terrain" Role="Terrain" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.ObjectPoint" Role="ObjectPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="ObjectPoint">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_OrderType">
+          <End Type="Agot2p6Model.OrderType" Role="OrderType" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="OrderType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Terrain">
+          <End Type="Agot2p6Model.Terrain" Role="Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderType_TokenType">
+          <End Type="Agot2p6Model.TokenType" Role="TokenType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.OrderType" Role="OrderType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="OrderType">
+              <PropertyRef Name="TokenType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerCounter_Terrain">
+          <End Type="Agot2p6Model.Terrain" Role="Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.PowerCounter" Role="PowerCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="PowerCounter">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PowerCounter_TokenType">
+          <End Type="Agot2p6Model.TokenType" Role="TokenType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.PowerCounter" Role="PowerCounter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="PowerCounter">
+              <PropertyRef Name="TokenType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Raid_Step">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Raid" Role="Raid" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Raid">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Raven_Step">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Raven" Role="Raven" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Raven">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Step_StepType">
+          <End Type="Agot2p6Model.StepType" Role="StepType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StepType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Step">
+              <PropertyRef Name="StepType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Support_Step">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Support" Role="Support" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Support">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosAction_Step">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.VesterosAction" Role="VesterosAction" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="VesterosAction">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voting_Step">
+          <End Type="Agot2p6Model.Step" Role="Step" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Voting" Role="Voting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Step">
+              <PropertyRef Name="Id" />
+              <PropertyRef Name="Game" />
+            </Principal>
+            <Dependent Role="Voting">
+              <PropertyRef Name="Step" />
+              <PropertyRef Name="Game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JoinTerrain_Terrain">
+          <End Type="Agot2p6Model.Terrain" Role="Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.TerrainTerrain" Role="TerrainTerrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="TerrainTerrain">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Terrain_TerrainType">
+          <End Type="Agot2p6Model.TerrainType" Role="TerrainType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Terrain" Role="Terrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TerrainType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Terrain">
+              <PropertyRef Name="TerrainType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TerrainTerrain_Terrain">
+          <End Type="Agot2p6Model.Terrain" Role="Terrain" Multiplicity="1" />
+          <End Type="Agot2p6Model.TerrainTerrain" Role="TerrainTerrain" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="TerrainTerrain">
+              <PropertyRef Name="JoinTerrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenPosition_Terrain">
+          <End Type="Agot2p6Model.Terrain" Role="Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.TokenPoint" Role="TokenPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="TokenPoint">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unit_Terrain">
+          <End Type="Agot2p6Model.Terrain" Role="Terrain" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Unit" Role="Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Terrain">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="Terrain" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TokenPosition_TokenType">
+          <End Type="Agot2p6Model.TokenType" Role="TokenType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.TokenPoint" Role="TokenPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="TokenPoint">
+              <PropertyRef Name="TokenType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UnitType_TokenType">
+          <End Type="Agot2p6Model.TokenType" Role="TokenType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.UnitType" Role="UnitType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TokenType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="UnitType">
+              <PropertyRef Name="TokenType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrackPosition_TrackType">
+          <End Type="Agot2p6Model.TrackType" Role="TrackType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.TrackPoint" Role="TrackPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TrackType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="TrackPoint">
+              <PropertyRef Name="TrackType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Unit_UnitType">
+          <End Type="Agot2p6Model.UnitType" Role="UnitType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.Unit" Role="Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="UnitType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosCardAction_VesterosActionType">
+          <End Type="Agot2p6Model.VesterosActionType" Role="VesterosActionType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.VesterosCardAction" Role="VesterosCardAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VesterosActionType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="VesterosCardAction">
+              <PropertyRef Name="VesterosActionType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosDecks_VesterosActionType">
+          <End Type="Agot2p6Model.VesterosActionType" Role="VesterosActionType" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.VesterosDecks" Role="VesterosDecks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VesterosActionType">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="VesterosDecks">
+              <PropertyRef Name="VesterosActionType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosCardAction_VesterosCardType">
+          <End Type="Agot2p6Model.VesterosCardType" Role="VesterosCardType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.VesterosCardAction" Role="VesterosCardAction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VesterosCardType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VesterosCardAction">
+              <PropertyRef Name="VesterosCardType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VesterosDecks_VesterosCardType">
+          <End Type="Agot2p6Model.VesterosCardType" Role="VesterosCardType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Agot2p6Model.VesterosDecks" Role="VesterosDecks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VesterosCardType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VesterosDecks">
+              <PropertyRef Name="VesterosCardType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Agot2p6ModelContainer" CdmEntityContainer="Agot2p6Entities">
+          <EntitySetMapping Name="Arrow">
+            <EntityTypeMapping TypeName="Agot2p6Model.Arrow">
+              <MappingFragment StoreEntitySet="Arrow">
+                <ScalarProperty Name="ArrowType" ColumnName="ArrowType" />
+                <ScalarProperty Name="EndTerrainName" ColumnName="EndTerrainName" />
+                <ScalarProperty Name="StartTerrainName" ColumnName="StartTerrainName" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="FirstId" ColumnName="FirstId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Battle">
+            <EntityTypeMapping TypeName="Agot2p6Model.Battle">
+              <MappingFragment StoreEntitySet="Battle">
+                <ScalarProperty Name="DefenceUser" ColumnName="DefenceUser" />
+                <ScalarProperty Name="AttackUser" ColumnName="AttackUser" />
+                <ScalarProperty Name="DefenceTerrain" ColumnName="DefenceTerrain" />
+                <ScalarProperty Name="AttackTerrain" ColumnName="AttackTerrain" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BattleUser">
+            <EntityTypeMapping TypeName="Agot2p6Model.BattleUser">
+              <MappingFragment StoreEntitySet="BattleUser">
+                <ScalarProperty Name="RandomDeskId" ColumnName="RandomDeskId" />
+                <ScalarProperty Name="IsWinner" ColumnName="IsWinner" />
+                <ScalarProperty Name="AdditionalEffect" ColumnName="AdditionalEffect" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="HomeCardType" ColumnName="HomeCardType" />
+                <ScalarProperty Name="BattleId" ColumnName="BattleId" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoType">
+            <EntityTypeMapping TypeName="Agot2p6Model.DoType">
+              <MappingFragment StoreEntitySet="DoType">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Game">
+            <EntityTypeMapping TypeName="Agot2p6Model.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="IsDeleteIgnore" ColumnName="IsDeleteIgnore" />
+                <ScalarProperty Name="IsRandomSkull" ColumnName="IsRandomSkull" />
+                <ScalarProperty Name="RandomIndex" ColumnName="RandomIndex" />
+                <ScalarProperty Name="ThroneProgress" ColumnName="ThroneProgress" />
+                <ScalarProperty Name="DurationRate" ColumnName="DurationRate" />
+                <ScalarProperty Name="LikeRate" ColumnName="LikeRate" />
+                <ScalarProperty Name="HonorRate" ColumnName="HonorRate" />
+                <ScalarProperty Name="MindRate" ColumnName="MindRate" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="MessageIndex" ColumnName="MessageIndex" />
+                <ScalarProperty Name="StepIndex" ColumnName="StepIndex" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+                <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CreatorLogin" ColumnName="CreatorLogin" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameException">
+            <EntityTypeMapping TypeName="Agot2p6Model.GameException">
+              <MappingFragment StoreEntitySet="GameException">
+                <ScalarProperty Name="IsFull" ColumnName="IsFull" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameInfo">
+            <EntityTypeMapping TypeName="Agot2p6Model.GameInfo">
+              <MappingFragment StoreEntitySet="GameInfo">
+                <ScalarProperty Name="Barbarian" ColumnName="Barbarian" />
+                <ScalarProperty Name="Turn" ColumnName="Turn" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GamePoint">
+            <EntityTypeMapping TypeName="Agot2p6Model.GamePoint">
+              <MappingFragment StoreEntitySet="GamePoint">
+                <ScalarProperty Name="GamePointType" ColumnName="GamePointType" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GamePointType">
+            <EntityTypeMapping TypeName="Agot2p6Model.GamePointType">
+              <MappingFragment StoreEntitySet="GamePointType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameUser">
+            <EntityTypeMapping TypeName="Agot2p6Model.GameUser">
+              <MappingFragment StoreEntitySet="GameUser">
+                <ScalarProperty Name="NeedReConnect" ColumnName="NeedReConnect" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="HomeType" ColumnName="HomeType" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameUserInfo">
+            <EntityTypeMapping TypeName="Agot2p6Model.GameUserInfo">
+              <MappingFragment StoreEntitySet="GameUserInfo">
+                <ScalarProperty Name="IsBladeUse" ColumnName="IsBladeUse" />
+                <ScalarProperty Name="RavenInfluence" ColumnName="RavenInfluence" />
+                <ScalarProperty Name="BladeInfluence" ColumnName="BladeInfluence" />
+                <ScalarProperty Name="ThroneInfluence" ColumnName="ThroneInfluence" />
+                <ScalarProperty Name="Supply" ColumnName="Supply" />
+                <ScalarProperty Name="Power" ColumnName="Power" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GameUserTerrain">
+            <EntityTypeMapping TypeName="Agot2p6Model.GameUserTerrain">
+              <MappingFragment StoreEntitySet="GameUserTerrain">
+                <ScalarProperty Name="Terrain" ColumnName="Terrain" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Garrison">
+            <EntityTypeMapping TypeName="Agot2p6Model.Garrison">
+              <MappingFragment StoreEntitySet="Garrison">
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="Terrain" ColumnName="Terrain" />
+                <ScalarProperty Name="TokenType" ColumnName="TokenType" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeCardType">
+            <EntityTypeMapping TypeName="Agot2p6Model.HomeCardType">
+              <MappingFragment StoreEntitySet="HomeCardType">
+                <ScalarProperty Name="Specialization" ColumnName="Specialization" />
+                <ScalarProperty Name="Defence" ColumnName="Defence" />
+                <ScalarProperty Name="Attack" ColumnName="Attack" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="HomeType" ColumnName="HomeType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HomeType">
+            <EntityTypeMapping TypeName="Agot2p6Model.HomeType">
+              <MappingFragment StoreEntitySet="HomeType">
+                <ScalarProperty Name="Terrain" ColumnName="Terrain" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="March">
+            <EntityTypeMapping TypeName="Agot2p6Model.March">
+              <MappingFragment StoreEntitySet="March">
+                <ScalarProperty Name="IsTerrainHold" ColumnName="IsTerrainHold" />
+                <ScalarProperty Name="SourceOrder" ColumnName="SourceOrder" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MarchUnit">
+            <EntityTypeMapping TypeName="Agot2p6Model.MarchUnit">
+              <MappingFragment StoreEntitySet="MarchUnit">
+                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+                <ScalarProperty Name="Terrain" ColumnName="Terrain" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Message">
+            <EntityTypeMapping TypeName="Agot2p6Model.Message">
+              <MappingFragment StoreEntitySet="Message">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObjectPoint">
+            <EntityTypeMapping TypeName="Agot2p6Model.ObjectPoint">
+              <MappingFragment StoreEntitySet="ObjectPoint">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="GamePoint" ColumnName="GamePoint" />
+                <ScalarProperty Name="HomeType" ColumnName="HomeType" />
+                <ScalarProperty Name="Symbolic" ColumnName="Symbolic" />
+                <ScalarProperty Name="Terrain" ColumnName="Terrain" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="Agot2p6Model.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Terrain" ColumnName="Terrain" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="FirstId" ColumnName="FirstId" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderType">
+            <EntityTypeMapping TypeName="Agot2p6Model.OrderType">
+              <MappingFragment StoreEntitySet="OrderType">
+                <ScalarProperty Name="DoType" ColumnName="DoType" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="IsSpecial" ColumnName="IsSpecial" />
+                <ScalarProperty Name="TokenType" ColumnName="TokenType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PowerCounter">
+            <EntityTypeMapping TypeName="Agot2p6Model.PowerCounter">
+              <MappingFragment StoreEntitySet="PowerCounter">
+                <ScalarProperty Name="Terrain" ColumnName="Terrain" />
+                <ScalarProperty Name="TokenType" ColumnName="TokenType" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Raid">
+            <EntityTypeMapping TypeName="Agot2p6Model.Raid">
+              <MappingFragment StoreEntitySet="Raid">
+                <ScalarProperty Name="SourceOrder" ColumnName="SourceOrder" />
+                <ScalarProperty Name="TargetOrder" ColumnName="TargetOrder" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RandomDesk">
+            <EntityTypeMapping TypeName="Agot2p6Model.RandomDesk">
+              <MappingFragment StoreEntitySet="RandomDesk">
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="PlayCount" ColumnName="PlayCount" />
+                <ScalarProperty Name="Skull" ColumnName="Skull" />
+                <ScalarProperty Name="Defence" ColumnName="Defence" />
+                <ScalarProperty Name="Attack" ColumnName="Attack" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Raven">
+            <EntityTypeMapping TypeName="Agot2p6Model.Raven">
+              <MappingFragment StoreEntitySet="Raven">
+                <ScalarProperty Name="StepType" ColumnName="StepType" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Step">
+            <EntityTypeMapping TypeName="Agot2p6Model.Step">
+              <MappingFragment StoreEntitySet="Step">
+                <ScalarProperty Name="IsFull" ColumnName="IsFull" />
+                <ScalarProperty Name="StepType" ColumnName="StepType" />
+                <ScalarProperty Name="GameUser" ColumnName="GameUser" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StepType">
+            <EntityTypeMapping TypeName="Agot2p6Model.StepType">
+              <MappingFragment StoreEntitySet="StepType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Support">
+            <EntityTypeMapping TypeName="Agot2p6Model.Support">
+              <MappingFragment StoreEntitySet="Support">
+                <ScalarProperty Name="BattleId" ColumnName="BattleId" />
+                <ScalarProperty Name="SupportUser" ColumnName="SupportUser" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Symbolic">
+            <EntityTypeMapping TypeName="Agot2p6Model.Symbolic">
+              <MappingFragment StoreEntitySet="Symbolic">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Terrain">
+            <EntityTypeMapping TypeName="Agot2p6Model.Terrain">
+              <MappingFragment StoreEntitySet="Terrain">
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="Power" ColumnName="Power" />
+                <ScalarProperty Name="Supply" ColumnName="Supply" />
+                <ScalarProperty Name="TerrainType" ColumnName="TerrainType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TerrainTerrain">
+            <EntityTypeMapping TypeName="Agot2p6Model.TerrainTerrain">
+              <MappingFragment StoreEntitySet="TerrainTerrain">
+                <ScalarProperty Name="JoinTerrain" ColumnName="JoinTerrain" />
+                <ScalarProperty Name="Terrain" ColumnName="Terrain" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TerrainType">
+            <EntityTypeMapping TypeName="Agot2p6Model.TerrainType">
+              <MappingFragment StoreEntitySet="TerrainType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TokenPoint">
+            <EntityTypeMapping TypeName="Agot2p6Model.TokenPoint">
+              <MappingFragment StoreEntitySet="TokenPoint">
+                <ScalarProperty Name="GamePoint" ColumnName="GamePoint" />
+                <ScalarProperty Name="TokenType" ColumnName="TokenType" />
+                <ScalarProperty Name="Terrain" ColumnName="Terrain" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TokenType">
+            <EntityTypeMapping TypeName="Agot2p6Model.TokenType">
+              <MappingFragment StoreEntitySet="TokenType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrackPoint">
+            <EntityTypeMapping TypeName="Agot2p6Model.TrackPoint">
+              <MappingFragment StoreEntitySet="TrackPoint">
+                <ScalarProperty Name="GamePoint" ColumnName="GamePoint" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="TrackType" ColumnName="TrackType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrackType">
+            <EntityTypeMapping TypeName="Agot2p6Model.TrackType">
+              <MappingFragment StoreEntitySet="TrackType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unit">
+            <EntityTypeMapping TypeName="Agot2p6Model.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="IsWounded" ColumnName="IsWounded" />
+                <ScalarProperty Name="Terrain" ColumnName="Terrain" />
+                <ScalarProperty Name="UnitType" ColumnName="UnitType" />
+                <ScalarProperty Name="FirstId" ColumnName="FirstId" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitType">
+            <EntityTypeMapping TypeName="Agot2p6Model.UnitType">
+              <MappingFragment StoreEntitySet="UnitType">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Strength" ColumnName="Strength" />
+                <ScalarProperty Name="TokenType" ColumnName="TokenType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsedHomeCard">
+            <EntityTypeMapping TypeName="Agot2p6Model.UsedHomeCard">
+              <MappingFragment StoreEntitySet="UsedHomeCard">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HomeCardType" ColumnName="HomeCardType" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VesterosAction">
+            <EntityTypeMapping TypeName="Agot2p6Model.VesterosAction">
+              <MappingFragment StoreEntitySet="VesterosAction">
+                <ScalarProperty Name="VesterosDecks" ColumnName="VesterosDecks" />
+                <ScalarProperty Name="ActionNumber" ColumnName="ActionNumber" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VesterosActionType">
+            <EntityTypeMapping TypeName="Agot2p6Model.VesterosActionType">
+              <MappingFragment StoreEntitySet="VesterosActionType">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VesterosCardAction">
+            <EntityTypeMapping TypeName="Agot2p6Model.VesterosCardAction">
+              <MappingFragment StoreEntitySet="VesterosCardAction">
+                <ScalarProperty Name="ActionNumber" ColumnName="ActionNumber" />
+                <ScalarProperty Name="VesterosActionType" ColumnName="VesterosActionType" />
+                <ScalarProperty Name="VesterosCardType" ColumnName="VesterosCardType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VesterosCardType">
+            <EntityTypeMapping TypeName="Agot2p6Model.VesterosCardType">
+              <MappingFragment StoreEntitySet="VesterosCardType">
+                <ScalarProperty Name="PlayCount" ColumnName="PlayCount" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="BarbarianFlag" ColumnName="BarbarianFlag" />
+                <ScalarProperty Name="DecksNumber" ColumnName="DecksNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VesterosDecks">
+            <EntityTypeMapping TypeName="Agot2p6Model.VesterosDecks">
+              <MappingFragment StoreEntitySet="VesterosDecks">
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="VesterosActionType" ColumnName="VesterosActionType" />
+                <ScalarProperty Name="IsFull" ColumnName="IsFull" />
+                <ScalarProperty Name="VesterosCardType" ColumnName="VesterosCardType" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="FirstId" ColumnName="FirstId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voting">
+            <EntityTypeMapping TypeName="Agot2p6Model.Voting">
+              <MappingFragment StoreEntitySet="Voting">
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="PowerCount" ColumnName="PowerCount" />
+                <ScalarProperty Name="Game" ColumnName="Game" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

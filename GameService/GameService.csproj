@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DFA0AE0D-46F6-4BE4-B2F8-1DBA1D2248C2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GameService</RootNamespace>
+    <AssemblyName>GameService</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MyLibrary">
+      <HintPath>..\..\..\dll\MyLibrary\MyLibrary\bin\Release\MyLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.Common, Version=1.6.5.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.5\lib\net45\SuperSocket.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.Facility, Version=1.6.5.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.5\lib\net45\SuperSocket.Facility.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.SocketBase, Version=1.6.5.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.1.6.5\lib\net45\SuperSocket.SocketBase.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.SocketEngine, Version=1.6.5.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.Engine.1.6.5.1\lib\net45\SuperSocket.SocketEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.SocketService, Version=1.6.5.0, Culture=neutral, PublicKeyToken=6c80000676988ebb, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.Engine.1.6.5.1\lib\net45\SuperSocket.SocketService.exe</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SuperSocket.WebSocket, Version=1.6.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperSocket.WebSocket.1.6.5\lib\net45\SuperSocket.WebSocket.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Arrow.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ArrowsData.cs" />
+    <Compile Include="Battle.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BattleUser.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CheckGamePartial.cs" />
+    <Compile Include="ConnectPartial.cs" />
+    <Compile Include="DisConnectPartial.cs" />
+    <Compile Include="DoType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ExtWCFGameException.cs" />
+    <Compile Include="Extensions\ExtWCFGamePoint.cs" />
+    <Compile Include="Extensions\ExtWCFGameUser.cs" />
+    <Compile Include="Extensions\ExtWCFGarrison.cs" />
+    <Compile Include="Extensions\ExtWCFMarch.cs" />
+    <Compile Include="Extensions\ExtWCFMrachUnit.cs" />
+    <Compile Include="Extensions\ExtWCFObjectPoint.cs" />
+    <Compile Include="Extensions\ExtWCFOrderType.cs" />
+    <Compile Include="Extensions\ExtWCFRaid.cs" />
+    <Compile Include="Extensions\ExtWCFRandomDesk.cs" />
+    <Compile Include="Extensions\ExtWCFRaven.cs" />
+    <Compile Include="Extensions\ExtWCFStep.cs" />
+    <Compile Include="Extensions\ExtWCFSupport.cs" />
+    <Compile Include="Extensions\ExtWCFSymbolic.cs" />
+    <Compile Include="Extensions\ExtWCFTerrain.cs" />
+    <Compile Include="Extensions\ExtWCFTerrainType.cs" />
+    <Compile Include="Extensions\ExtWCFTokenPoint.cs" />
+    <Compile Include="Extensions\ExtWCFTokenType.cs" />
+    <Compile Include="Extensions\ExtWCFTrackPoint.cs" />
+    <Compile Include="Extensions\ExtWCFTrackType.cs" />
+    <Compile Include="Extensions\ExtWCFUnitType.cs" />
+    <Compile Include="Extensions\ExtWCFVesterosAction.cs" />
+    <Compile Include="Extensions\ExtWCFVoting.cs" />
+    <Compile Include="Game.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameException.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameInfo.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GamePoint.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GamePointType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameUser.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameUserInfo.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GameUserTerrain.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Garrison.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HomeCardType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HomeType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="March.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MarchUnit.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Message.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectPoint.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Partials\Battle.cs" />
+    <Compile Include="Partials\BattleUser.cs" />
+    <Compile Include="Partials\DoType.cs" />
+    <Compile Include="Partials\Game.cs" />
+    <Compile Include="Partials\GameException.cs" />
+    <Compile Include="Partials\GameInfo.cs" />
+    <Compile Include="Partials\GamePoint.cs" />
+    <Compile Include="Partials\GameUser.cs" />
+    <Compile Include="Partials\GameUserInfo.cs" />
+    <Compile Include="Partials\GameUserTerrain.cs" />
+    <Compile Include="Partials\Garrison.cs" />
+    <Compile Include="Partials\HomeCardType.cs" />
+    <Compile Include="Partials\HomeType.cs" />
+    <Compile Include="Partials\March.cs" />
+    <Compile Include="Partials\MrachUnit.cs" />
+    <Compile Include="Partials\ObjectPoint.cs" />
+    <Compile Include="Partials\Order.cs" />
+    <Compile Include="Partials\OrderType.cs" />
+    <Compile Include="Partials\PowerCounter.cs" />
+    <Compile Include="Partials\Raid.cs" />
+    <Compile Include="Partials\Raven.cs" />
+    <Compile Include="Partials\Step.cs" />
+    <Compile Include="Partials\Support.cs" />
+    <Compile Include="Partials\Symbolic.cs" />
+    <Compile Include="Partials\Terrain.cs" />
+    <Compile Include="Partials\TerrainTerrain.cs" />
+    <Compile Include="Partials\TerrainType.cs" />
+    <Compile Include="Partials\TokenPoint.cs" />
+    <Compile Include="Partials\TokenType.cs" />
+    <Compile Include="Partials\TrackPoint.cs" />
+    <Compile Include="Partials\TrackType.cs" />
+    <Compile Include="Partials\Unit.cs" />
+    <Compile Include="Partials\UnitType.cs" />
+    <Compile Include="Partials\UsedHomeCard.cs" />
+    <Compile Include="Partials\VesterosAction.cs" />
+    <Compile Include="Partials\VesterosCardType.cs" />
+    <Compile Include="Partials\VesterosDecks.cs" />
+    <Compile Include="Partials\Voting.cs" />
+    <Compile Include="PowerCounter.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GameHost.cs" />
+    <Compile Include="GameHostPartial.cs" />
+    <Compile Include="Raid.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RandomDesk.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Raven.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Step.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StepType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Support.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Symbolic.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Terrain.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TerrainTerrain.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TerrainType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TokenPoint.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TokenType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrackPoint.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrackType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Unit.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsedHomeCard.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VesterosAction.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VesterosActionType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VesterosCardAction.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VesterosCardType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VesterosDecks.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Voting.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GamePortalServer\GamePortalServer.csproj">
+      <Project>{fd9e5a5b-af55-40e2-93df-7e2a74b138b1}</Project>
+      <Name>GamePortalServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GamePortal\GamePortalPublicLibrary.csproj">
+      <Project>{8250c7f3-6de0-4298-ab50-b757fa0f133e}</Project>
+      <Name>GamePortalPublicLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotificationsPublic\NotificationsPublic.csproj">
+      <Project>{507ba238-0640-42d3-b938-8cead32c3db4}</Project>
+      <Name>NotificationsPublic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotificationsServer\NotificationsServer.csproj">
+      <Project>{a1ddec8a-5616-4546-82ac-d0ff26837824}</Project>
+      <Name>NotificationsServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
+    </None>
+    <None Include="Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
